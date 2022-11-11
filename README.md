@@ -1,24 +1,40 @@
-# README
+# PortfolioGallery
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+ポートフォリオレビューサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+作成したポートフォリオをサイト上で共有し、フィードバックを受けることができるコンテンツがあれば良いと思い、このテーマを考案しました。
 
-* Ruby version
+インターネット上では様々なポートフォリオをまとめたサイトがあるが、投稿機能を有しているサイトがないため、同じポートフォリオを紹介しているサイトが多いと感じました。 そのため、投稿機能のあるポートフォリオ集約サイトであれば様々な種類のポートフォリオが閲覧できると考えました。
 
-* System dependencies
+また、投稿したポートフォリオに対してコメントや評価を行う機能により、フィードバックを受け、それが投稿者のモチベーションにつながると良いと思い制作に着手しました。
 
-* Configuration
+### ターゲットユーザ
+- 他の人が作成したポートフォリオを参考にしたい人
+- 作成したポートフォリオのフィードバックが欲しい人
 
-* Database creation
+### 主な利用シーン
+【閲覧者側】
 
-* Database initialization
+- ポートフォリオの参考に、他の人が作成したポートフォリオを閲覧したいとき
+- プログラミング言語ごとに絞り込んでポートフォリオを閲覧したいとき
+【投稿者側】
 
-* How to run the test suite
+- 作成したポートフォリオに対してコメントをもらったり、評価を受けたいとき
 
-* Services (job queues, cache servers, search engines, etc.)
+## 設計書
+テーブル定義書: https://docs.google.com/spreadsheets/d/1pwOTdLy8IS3zd1tigUuqnhuMKbq4NTrx/edit#gid=1243549839
 
-* Deployment instructions
 
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
