@@ -1,0 +1,23 @@
+<%= form_with model: @user, url: information_path do |f| %>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td class="col-3">ユーザー名</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td class="col-3">紹介文</td>
+        <td><%= f.text_field :introduction %></td>
+      </tr>
+      <tr>
+        <td class="col-3">メールアドレス</td>
+        <td><%= f.text_field :email %></td>
+      </tr>
+      <tr>
+        <td class="col-3"></td>
+        <td><%= f.submit '変更を保存', class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to '退会する', information_destroy_path, method: :delete, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
