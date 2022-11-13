@@ -2,6 +2,10 @@
   <table class="table table-borderless">
     <tbody>
       <tr>
+        <td class="col-3">プロフィール画像</td>
+        <td><%= f.file_field :profile_image, accept: "image/*" %></td>
+      </tr>
+      <tr>
         <td class="col-3">ユーザー名</td>
         <td><%= f.text_field :name %></td>
       </tr>
