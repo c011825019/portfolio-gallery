@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <% if request.fullpath.include? "/admin" %>
+      <%= render 'admin/header' %>
+    <% else %>
+      <%= render 'public/header' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
