@@ -1,4 +1,4 @@
-<%= image_tag @portfolio.image %>
+<%= image_tag @portfolio.get_image(100, 100) %>
 <%= @portfolio.name %>
 <%= @portfolio.outline %>
 <%= @portfolio.url %>
