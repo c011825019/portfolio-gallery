@@ -8,9 +8,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find_by(id: params[:id], portfolio_id: params[:portfolio_id])
-    @review.destroy
-    redirect_to portfolio_path(@portfolio)
+    Review.find_by(id: params[:id], portfolio_id: params[:portfolio_id]).destroy
+    redirect_to portfolio_path(params[:portfolio_id])
   end
 
   private

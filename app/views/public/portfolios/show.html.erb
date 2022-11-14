@@ -11,40 +11,23 @@
   </div>
   評価
   <div id="post_raty"></div>
-  　<script>
-      $(document).on('turbolinks:load', function() {
-      let raty_elem = document.querySelector('#post_raty');
-      raty_elem.innerHTML = ""
-      let option = {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          half: true,
-          scoreName: 'review[evaluation]',
-        };
-      raty(raty_elem,option);
-     });
-    </script>
+　<script>
+    $(document).on('turbolinks:load', function() {
+    let raty_elem = document.querySelector('#post_raty');
+    raty_elem.innerHTML = ""
+    let option = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        half: true,
+        scoreName: 'review[evaluation]',
+      };
+    raty(raty_elem,option);
+   });
+  </script>
   <div>
     <%= f.submit '投稿' %>
   </div>
 <% end %>
 
-<% @reviews.each do |review| %>
-  <%= review.comment %>
-  <div id="rate_<%= review.id %>"></div>
-  <script>
-    $(document).on('turbolinks:load', function() {
-        let raty_<%= review.id %> = document.querySelector('#rate_<%= review.id %>');
-        rate_<%= review.id %>.innerHTML = ""
-        let option_<%= review.id %> = {
-            starOn: "<%= asset_path('star-on.png') %>",
-            starOff: "<%= asset_path('star-off.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            score: "<%= review.evaluation %>",
-            readOnly: true,
-          };
-        raty(raty_<%= review.id %> ,option_<%= review.id %>);
-    });
-  </script>
-<% end %>
+<%= render 'public/reviews/index', portfolio: @portfolio, reviews: @reviews %>
