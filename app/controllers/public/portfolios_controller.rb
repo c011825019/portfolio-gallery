@@ -5,6 +5,8 @@ class Public::PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
+    @reviews = Review.all
+    @review = Review.new
   end
 
   def new

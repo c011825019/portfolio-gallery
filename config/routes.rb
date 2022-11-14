@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :portfolios, only: [:index, :show, :edit, :update, :destroy]
+    resources :portfolios, only: [:index, :show, :edit, :update, :destroy] do
+      resource :reviews, only: [:destroy]
+    end
   end
 
   scope module: :public do
@@ -20,7 +22,9 @@ Rails.application.routes.draw do
     patch 'information' => 'users#update'
     delete 'information/destroy' => 'users#destroy'
 
-    resources :portfolios, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :portfolios, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      resources :reviews, only: [:create, :destroy]
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
