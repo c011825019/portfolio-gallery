@@ -4,6 +4,23 @@
       <%= image_tag portfolio.get_image(100, 100) %>
     <% end %>
     <p>
+      <div id="rate_<%= portfolio.id %>"></div>
+      <script>
+        $(document).on('turbolinks:load', function() {
+          let raty_<%= portfolio.id %> = document.querySelector('#rate_<%= portfolio.id %>');
+          rate_<%= portfolio.id %>.innerHTML = ""
+          let option_<%= portfolio.id %> = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: "<%= portfolio.reviews.average(:evaluation) %>",
+              readOnly: true,
+            };
+          raty(raty_<%= portfolio.id %> ,option_<%= portfolio.id %>);
+        });
+      </script>
+    </p>
+    <p>
       <%= image_tag portfolio.user.get_profile_image(50, 50) %>
       <%= portfolio.user.name %>
     </p>
