@@ -10,6 +10,15 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
+              <%= link_to 'マイページ', my_page_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '投稿一覧', portfolios_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '新規投稿', new_portfolio_path %>
+            </li>
+            <li class="nav-item">
               <%= link_to 'ログアウト', destroy_user_session_path %>
             </li>
           <% else %>

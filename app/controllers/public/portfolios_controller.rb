@@ -22,6 +22,25 @@ class Public::PortfoliosController < ApplicationController
     end
   end
 
+  def edit
+    @portfolio = Portfolio.find(params[:id])
+  end
+
+  def update
+    @portfolio = Portfolio.find(params[:id])
+    if @portfolio.update(portfolio_params)
+      redirect_to portfolio_path(@portfolio)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @portfolio = Portfolio.find(params[:id])
+    @portfolio.destroy
+    redirect_to portfolios_path
+  end
+
   private
 
   def portfolio_params
