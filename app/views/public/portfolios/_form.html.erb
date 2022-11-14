@@ -1,0 +1,11 @@
+<%= form_with model: portfolio do |f| %>
+  <h6>画像</h6>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h6>投稿名</h6>
+  <%= f.text_field :name %>
+  <h6>概要</h6>
+  <%= f.text_area :outline %>
+  <h6>投稿リンク</h6>
+  <%= f.text_field :url %>
+  <%= f.submit '投稿' %>
+<% end %>
