@@ -1,0 +1,12 @@
+<% @portfolios.each do |portfolio| %>
+  <div>
+    <%= link_to portfolio_path(portfolio) do %>
+      <%= image_tag portfolio.get_image %>
+    <% end %>
+    <p>
+      <%= image_tag portfolio.user.get_profile_image(100, 100) %>
+      <%= portfolio.user.name %>
+    </p>
+    <p><%= portfolio.name %></p>
+  </div>
+<% end %>
