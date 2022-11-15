@@ -5,6 +5,8 @@ class Portfolio < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :portfolio_tags, dependent: :destroy
   has_many :tags, through: :portfolio_tags
+  has_many :portfolio_categorys, dependent: :destroy
+  has_many :categorys, through: :portfolio_categorys
 
   def get_image(width, height)
     unless image.attached?
