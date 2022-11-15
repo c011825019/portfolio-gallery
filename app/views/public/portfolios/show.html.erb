@@ -2,6 +2,9 @@
 <%= @portfolio.name %>
 <%= @portfolio.outline %>
 <%= @portfolio.url %>
+<% @portfolio.tags.each do |tag| %>
+  <li><%= tag.name %></li>
+<% end %>
 <%= link_to '編集', edit_portfolio_path(@portfolio) %>
 
 <%= form_with model: [@portfolio, @review], local: true do |f| %>
