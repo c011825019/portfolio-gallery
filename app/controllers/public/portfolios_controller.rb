@@ -16,7 +16,9 @@ class Public::PortfoliosController < ApplicationController
   def create
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user_id = current_user.id
+    tag_list=params[:portfolio][:tag_name].split(',')
     if @portfolio.save
+      @portfolio.save_tags(tag_list)
       redirect_to portfolio_path(@portfolio)
     else
       @portfolios = Portfolio.all
@@ -26,11 +28,14 @@ class Public::PortfoliosController < ApplicationController
 
   def edit
     @portfolio = Portfolio.find(params[:id])
+    @tag_list=@portfolio.tags.pluck(:name).join(',')
   end
 
   def update
     @portfolio = Portfolio.find(params[:id])
+    tag_list=params[:portfolio][:tag_name].split(',')
     if @portfolio.update(portfolio_params)
+      @portfolio.save_tags(tag_list)
       redirect_to portfolio_path(@portfolio)
     else
       render :edit

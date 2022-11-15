@@ -3,6 +3,8 @@
   <%= f.file_field :image, accept: "image/*" %>
   <h6>投稿名</h6>
   <%= f.text_field :name %>
+  <h6>タグ</h6>
+  <%= f.text_field :tag_name, value: @tag_list %>
   <h6>概要</h6>
   <%= f.text_area :outline %>
   <h6>投稿リンク</h6>
