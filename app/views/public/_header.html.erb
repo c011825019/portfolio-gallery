@@ -1,34 +1,36 @@
-<header class="shadow-sm">
-  <nav class="navbar navbar-expand-lg navbar-light">
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <p class="navbar-brand p-3">Logo</p>
-      <p id="notice"><%= notice %></p>
+      <a class="navbar-brand" href="/"><span>Logo</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'マイページ', my_page_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '投稿一覧', portfolios_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '新規投稿', new_portfolio_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ログアウト', destroy_user_session_path %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to '新規登録', new_user_registration_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ログイン', new_user_session_path %>
-            </li>
-          <% end %>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to 'マイページ', my_page_path, class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to '新規投稿', new_portfolio_path, class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to '投稿一覧', portfolios_path, class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', destroy_user_session_path, class: 'nav-link text-light' %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'ホーム', root_path,class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-light' %>
+          </li>
+          <li>
+            <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-light' %>
+          </li>
+        <% end %>
         </ul>
       </div>
     </div>
