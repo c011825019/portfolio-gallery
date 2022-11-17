@@ -1,29 +1,40 @@
-<% @portfolios.each do |portfolio| %>
-  <div>
-    <%= link_to portfolio_path(portfolio) do %>
-      <%= image_tag portfolio.get_image(100, 100) %>
-    <% end %>
-    <p>
-      <div id="rate_<%= portfolio.id %>"></div>
-      <script>
-        $(document).on('turbolinks:load', function() {
-          let raty_<%= portfolio.id %> = document.querySelector('#rate_<%= portfolio.id %>');
-          rate_<%= portfolio.id %>.innerHTML = ""
-          let option_<%= portfolio.id %> = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              score: "<%= portfolio.reviews.average(:evaluation) %>",
-              readOnly: true,
-            };
-          raty(raty_<%= portfolio.id %> ,option_<%= portfolio.id %>);
-        });
-      </script>
-    </p>
-    <p>
-      <%= image_tag portfolio.user.get_profile_image(50, 50) %>
-      <%= portfolio.user.name %>
-    </p>
-    <p><%= portfolio.name %></p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+      <% @portfolios.each do |portfolio| %>
+        <div class="card mb-1 w-80">
+            <%= link_to portfolio_path(portfolio) do %>
+              <%= image_tag portfolio.get_image, width: '0%', height: '50%', class: "bd-placeholder-img card-img-top" %>
+            <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= portfolio.name %><span class="float-right" id="rate_<%= portfolio.id %>"></span></h5>
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let raty_<%= portfolio.id %> = document.querySelector('#rate_<%= portfolio.id %>');
+                rate_<%= portfolio.id %>.innerHTML = ""
+                let option_<%= portfolio.id %> = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    score: "<%= portfolio.reviews.average(:evaluation) %>",
+                    readOnly: true,
+                  };
+                raty(raty_<%= portfolio.id %> ,option_<%= portfolio.id %>);
+              });
+            </script>
+            <% portfolio.tags.each do |tag| %>
+              <%= link_to tag.name, portfolios_path, class: "btn btn-sm btn-info" %>
+            <% end %><br>
+            <% portfolio.categorys.each do |category| %>
+              <%= link_to category.name, portfolios_path%>
+            <% end %>
+            <p>
+              <%= image_tag portfolio.user.get_profile_image(30, 30), class: "rounded-circle" %>
+              <%= portfolio.user.name %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
