@@ -1,40 +1,34 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-8">
-      <% @portfolios.each do |portfolio| %>
-        <div class="card mb-1 w-80">
-            <%= link_to portfolio_path(portfolio) do %>
-              <%= image_tag portfolio.get_image, width: '0%', height: '50%', class: "bd-placeholder-img card-img-top" %>
-            <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= portfolio.name %><span class="float-right" id="rate_<%= portfolio.id %>"></span></h5>
-            <script>
-              $(document).on('turbolinks:load', function() {
-                let raty_<%= portfolio.id %> = document.querySelector('#rate_<%= portfolio.id %>');
-                rate_<%= portfolio.id %>.innerHTML = ""
-                let option_<%= portfolio.id %> = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    score: "<%= portfolio.reviews.average(:evaluation) %>",
-                    readOnly: true,
-                  };
-                raty(raty_<%= portfolio.id %> ,option_<%= portfolio.id %>);
-              });
-            </script>
-            <% portfolio.tags.each do |tag| %>
-              <%= link_to tag.name, portfolios_path, class: "btn btn-sm btn-info" %>
-            <% end %><br>
-            <% portfolio.categorys.each do |category| %>
-              <%= link_to category.name, portfolios_path%>
-            <% end %>
-            <p>
-              <%= image_tag portfolio.user.get_profile_image(30, 30), class: "rounded-circle" %>
-              <%= portfolio.user.name %>
-            </p>
+    <div class="col-3">
+      <div class="mt-5">
+        <p>使用言語で絞り込む</p>
+        <%= form_with model: @q, url: portfolios_path, method: :get, local: true do |f| %>
+          <%= f.collection_check_boxes(:categorys_id_eq_all, Category.all, :id, :name) do |category| %>
+            <div>
+              <%= category.label do %>
+                <%= category.check_box %>
+                <%= category.text %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= f.submit "絞り込み", class: "btn btn-sm btn-primary btn-lg btn-block" %>
+        <% end %>
+      </div>
+      <div class="mt-5">
+        <p>検索する</p>
+        <%= form_with model: @q, url: portfolios_path, method: :get, local: true do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name_cont %>
           </div>
-        </div>
-      <% end %>
+          <div class="form-group">
+            <%= f.submit "検索", class: "btn btn-sm btn-primary btn-lg btn-block" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6 offset-1">
+      <%= render 'public/portfolios/index', portfolios: @portfolios %>
     </div>
   </div>
 </div>
