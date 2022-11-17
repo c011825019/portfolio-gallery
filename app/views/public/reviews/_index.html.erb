@@ -1,19 +1,30 @@
-<% reviews.each do |review| %>
-  <%= review.comment %>
-  <div id="rate_<%= review.id %>"></div>
-  <script>
-    $(document).on('turbolinks:load', function() {
-      let raty_<%= review.id %> = document.querySelector('#rate_<%= review.id %>');
-      rate_<%= review.id %>.innerHTML = ""
-      let option_<%= review.id %> = {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          score: "<%= review.evaluation %>",
-          readOnly: true,
-        };
-      raty(raty_<%= review.id %> ,option_<%= review.id %>);
-    });
-  </script>
-  <%= link_to '削除', portfolio_review_path(portfolio, review), method: :delete %>
-<% end %>
+<div class="overflow-auto h-50">
+  <% reviews.each do |review| %>
+    <div class="card mt-2">
+      <div class="card-header">
+        <%= image_tag review.user.get_profile_image(30, 30), class: "rounded-circle" %>
+        <span><%= review.user.name %></span>
+        <span id="rate_<%= review.id %>"></span>
+        <script>
+          $(document).on('turbolinks:load', function() {
+            let raty_<%= review.id %> = document.querySelector('#rate_<%= review.id %>');
+            rate_<%= review.id %>.innerHTML = ""
+            let option_<%= review.id %> = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: "<%= review.evaluation %>",
+                readOnly: true,
+              };
+            raty(raty_<%= review.id %> ,option_<%= review.id %>);
+          });
+        </script>
+
+        <%= link_to '削除', portfolio_review_path(portfolio, review), method: :delete, class: "float-right" %>
+      </div>
+      <div class="card-body">
+        <p><%= simple_format(review.comment) %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
