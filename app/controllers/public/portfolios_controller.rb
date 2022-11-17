@@ -17,12 +17,11 @@ class Public::PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user_id = current_user.id
     tag_list=params[:portfolio][:tag_name].split(',')
-    if @portfolio.save
+    if @portfolio.save and tag_list.length <= 5
       @portfolio.save_tags(tag_list)
       redirect_to portfolio_path(@portfolio)
     else
-      @portfolios = Portfolio.all
-      render :index
+      render :new
     end
   end
 
