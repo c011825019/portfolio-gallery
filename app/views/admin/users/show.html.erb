@@ -1,0 +1,6 @@
+<%= image_tag @user.get_profile_image(200, 200) %>
+<%= @user.name %>
+<%= @user.email %>
+<%= @user.introduction %>
+<%= link_to "編集", edit_admin_user_path %>
+<%= link_to "削除", admin_user_path, method: :delete %>
