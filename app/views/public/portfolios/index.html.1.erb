@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <div class="mt-5">
+        <p>使用言語で絞り込む</p>
+        <%= form_with model: @q, url: portfolios_path, method: :get, local: true do |f| %>
+          <%= f.collection_check_boxes(:categorys_id_eq_all, Category.all, :id, :name) do |category| %>
+            <div>
+              <%= category.label do %>
+                <%= category.check_box %>
+                <%= category.text %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= f.submit "絞り込み", class: "btn btn-sm btn-primary btn-lg btn-block" %>
+        <% end %>
+      </div>
+      <div class="mt-5">
+        <p>検索する</p>
+        <%= form_with model: @q, url: portfolios_path, method: :get, local: true do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name_cont %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "検索", class: "btn btn-sm btn-primary btn-lg btn-block" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6 offset-1">
+      <%= render 'public/portfolios/index', portfolios: @portfolios %>
+    </div>
+  </div>
+</div>
