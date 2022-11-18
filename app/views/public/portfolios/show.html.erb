@@ -11,6 +11,7 @@
           <h5><%= @portfolio.name %></h5>
           <p><%= simple_format(@portfolio.outline) %></p>
           <p><%= @portfolio.url %></p>
+          <p><%= @portfolio.is_public %></p>
 
           <% @portfolio.tags.each do |tag| %>
             <%= tag.name %>
