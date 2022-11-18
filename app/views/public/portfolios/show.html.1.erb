@@ -1,0 +1,58 @@
+<%= @length %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-10 mt-5">
+      <div class="row">
+        <div class="col-6">
+        <%= image_tag @portfolio.get_image, class: "img-fluid" %>
+        </div>
+        <div class="col-4">
+          <h5><%= @portfolio.name %></h5>
+          <p><%= simple_format(@portfolio.outline) %></p>
+          <p><%= @portfolio.url %></p>
+          <p><%= @portfolio.is_public %></p>
+
+          <% @portfolio.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+          <% @portfolio.categorys.each do |category| %>
+            <%= category.name %>
+          <% end %>
+          <%= link_to '編集', edit_portfolio_path(@portfolio) %>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <%= form_with model: [@portfolio, @review], local: true do |f| %>
+          <div>
+            コメント<br>
+            <%= f.text_area :comment %>
+          </div>
+          評価
+          <div id="post_raty"></div>
+        　<script>
+            $(document).on('turbolinks:load', function() {
+            let raty_elem = document.querySelector('#post_raty');
+            raty_elem.innerHTML = ""
+            let option = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'review[evaluation]',
+              };
+            raty(raty_elem,option);
+           });
+          </script>
+          <div>
+            <%= f.submit '投稿' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <%= render 'public/reviews/index', portfolio: @portfolio, reviews: @portfolio.reviews %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
