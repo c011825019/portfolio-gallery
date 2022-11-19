@@ -1,3 +1,4 @@
+<%= @length %>
 <div class="container-fluid">
   <div class="row">
     <div class="col-2"></div>
@@ -19,6 +20,11 @@
             <%= category.name %>
           <% end %>
           <%= link_to '編集', edit_admin_portfolio_path(@portfolio) %>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <%= render 'admin/reviews/index', portfolio: @portfolio, reviews: @portfolio.reviews %>
         </div>
       </div>
     </div>
