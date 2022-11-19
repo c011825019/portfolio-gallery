@@ -28,6 +28,15 @@
       </div>
     </div>
     <div class="col-8 offset-1">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ソート
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= sort_link(@q, :'created_at desc', '新しい順', hide_indicator: true, class: "dropdown-item") %>
+          <%= sort_link(@q, :'created_at asc', '古い順', hide_indicator: true, class: "dropdown-item") %>
+        </div>
+      </div>
       <%= render 'public/portfolios/index', portfolios: @portfolios %>
     </div>
   </div>
