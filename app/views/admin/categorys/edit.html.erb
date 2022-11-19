@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @category, url: admin_category_path do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "カテゴリー名" %>
+          <%= f.text_field :name %>
+          <%= f.submit '変更' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
