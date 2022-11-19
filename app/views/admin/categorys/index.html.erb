@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @category, url: admin_categorys_path do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "カテゴリー名" %>
+          <%= f.text_field :name %>
+          <%= f.submit '追加' %>
+        </div>
+      <% end %>
+
+      <table class="table table-borderless">
+        <% @categorys.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td>
+              <%= link_to '編集', edit_admin_category_path(category) %>
+              <%= link_to '削除', admin_category_path(category), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </ul>
+      </table>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :portfolios, only: [:index, :show, :edit, :update, :destroy] do
       resources :reviews, only: [:destroy]
     end
+    resources :categorys, only: [:index, :create, :edit, :update, :destroy]
   end
 
   scope module: :public do
