@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :portfolios, only: [:index, :show, :edit, :update, :destroy] do
-      resources :reviews, only: [:destroy]
+      resources :reviews, only: [:edit, :update, :destroy]
     end
     resources :categorys, only: [:index, :create, :edit, :update, :destroy]
   end
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     delete 'information/destroy' => 'users#destroy'
 
     resources :portfolios, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-      resources :reviews, only: [:create, :destroy]
+      resources :reviews, only: [:create, :edit, :update, :destroy]
     end
   end
 
