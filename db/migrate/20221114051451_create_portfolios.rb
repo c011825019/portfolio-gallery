@@ -5,6 +5,7 @@ class CreatePortfolios < ActiveRecord::Migration[6.1]
       t.string :name, null: false, default: ""
       t.text :outline, null: false, default: ""
       t.text :url, null: false, default: ""
+      t.float :evaluation_average, default: 0.0
       t.boolean :is_public, null: false, default: true
 
       t.timestamps

@@ -18,7 +18,7 @@
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
                     starHalf: "<%= asset_path('star-half.png') %>",
-                    score: "<%= portfolio.reviews.average(:evaluation) %>",
+                    score: "<%= portfolio.evaluation_average %>",
                     readOnly: true,
                   };
                 raty(raty_<%= portfolio.id %> ,option_<%= portfolio.id %>);
