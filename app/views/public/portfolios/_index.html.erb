@@ -9,21 +9,7 @@
             <%= link_to portfolio_path(portfolio) do %>
               <%= image_tag portfolio.get_image, class: "card-img-top" %>
             <% end %>
-            <div id="rate_<%= portfolio.id %>"></div>
-            <script>
-              $(document).on('turbolinks:load', function() {
-                let raty_<%= portfolio.id %> = document.querySelector('#rate_<%= portfolio.id %>');
-                rate_<%= portfolio.id %>.innerHTML = ""
-                let option_<%= portfolio.id %> = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    score: "<%= portfolio.evaluation_average %>",
-                    readOnly: true,
-                  };
-                raty(raty_<%= portfolio.id %> ,option_<%= portfolio.id %>);
-              });
-            </script>
+            <%= render 'public/portfolios/static_evaluation_average', portfolio: portfolio %>
             <% portfolio.tags.each do |tag| %>
               <%= link_to tag.name, portfolios_path(@q, :'q[tags_id_eq' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
             <% end %><br>
