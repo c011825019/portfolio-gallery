@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_050845) do
     t.string "name", default: "", null: false
     t.text "outline", default: "", null: false
     t.text "url", default: "", null: false
+    t.float "evaluation_average", default: 0.0
     t.boolean "is_public", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

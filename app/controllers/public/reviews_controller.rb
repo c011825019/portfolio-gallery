@@ -4,6 +4,8 @@ class Public::ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     @review.portfolio_id = portfolio.id
     @review.save
+    portfolio.evaluation_average = portfolio.reviews.average(:evaluation)
+    portfolio.save
     redirect_to portfolio_path(portfolio)
   end
 
@@ -12,8 +14,11 @@ class Public::ReviewsController < ApplicationController
   end
 
   def update
+    portfolio = Portfolio.find(params[:portfolio_id])
     @review = Review.find(params[:id])
     if @review.update(review_params)
+      portfolio.evaluation_average = portfolio.reviews.average(:evaluation)
+      portfolio.save
       redirect_to portfolio_path(params[:portfolio_id])
     else
       render :edit
@@ -21,7 +26,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
+    portfolio = Portfolio.find(params[:portfolio_id])
     Review.find_by(id: params[:id], portfolio_id: params[:portfolio_id]).destroy
+    portfolio.evaluation_average = portfolio.reviews.average(:evaluation)
+    portfolio.save
     redirect_to portfolio_path(params[:portfolio_id])
   end
 
