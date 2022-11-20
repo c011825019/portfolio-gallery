@@ -16,7 +16,7 @@
           <% @portfolio.tags.each do |tag| %>
             <%= tag.name %>
           <% end %>
-          <% @portfolio.categorys.each do |category| %>
+          <% @portfolio.categories.each do |category| %>
             <%= category.name %>
           <% end %>
           <%= link_to '編集', edit_portfolio_path(@portfolio) %>

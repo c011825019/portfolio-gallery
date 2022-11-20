@@ -27,7 +27,7 @@
             <% portfolio.tags.each do |tag| %>
               <%= link_to tag.name, portfolios_path, class: "btn btn-sm btn-info" %>
             <% end %><br>
-            <% portfolio.categorys.each do |category| %>
+            <% portfolio.categories.each do |category| %>
               <%= link_to category.name, portfolios_path%>
             <% end %>
             <p>
