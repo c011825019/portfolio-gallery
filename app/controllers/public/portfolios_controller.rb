@@ -1,4 +1,6 @@
 class Public::PortfoliosController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @q = Portfolio.ransack(params[:q])
     @portfolios = @q.result
