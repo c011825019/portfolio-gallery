@@ -1,4 +1,6 @@
 class Admin::PortfoliosController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @q = Portfolio.ransack(params[:q])
     @portfolios = @q.result(distinct: true)

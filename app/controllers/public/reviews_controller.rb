@@ -1,4 +1,6 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     portfolio = Portfolio.find(params[:portfolio_id])
     @review = current_user.reviews.new(review_params)
