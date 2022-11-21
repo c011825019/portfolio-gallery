@@ -1,5 +1,6 @@
 class Public::PortfoliosController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:new]
 
   def index
     @q = Portfolio.ransack(params[:q])
@@ -54,5 +55,12 @@ class Public::PortfoliosController < ApplicationController
 
   def portfolio_params
     params.require(:portfolio).permit(:name, :image, :outline, :url, :is_public, category_ids: [])
+  end
+
+  def ensure_guest_user
+    @user = current_user
+    if @user.name == "guestuser"
+      redirect_to portfolios_path , notice: 'ゲストユーザーは新規投稿画面へ遷移できません。'
+    end
   end
 end

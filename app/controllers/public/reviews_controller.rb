@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:create]
 
   def create
     portfolio = Portfolio.find(params[:portfolio_id])
@@ -39,5 +40,13 @@ class Public::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:comment, :evaluation)
+  end
+
+  def ensure_guest_user
+    @user = current_user
+    @portfolio = Portfolio.find(params[:portfolio_id])
+    if @user.name == "guestuser"
+      redirect_to portfolio_path(@portfolio) , notice: 'ゲストユーザーはレビューを投稿できません。'
+    end
   end
 end
