@@ -1,8 +1,11 @@
-<div class="overflow-auto h-50">
+<div class="overflow-auto h-100">
   <% reviews.each do |review| %>
     <div class="card mt-2">
       <div class="card-header">
-        <%= image_tag review.user.get_profile_image(30, 30), class: "rounded-circle" %>
+        <%= link_to admin_user_path(review.user) do %>
+          <%= image_tag review.user.get_profile_image, size: "30x30", class: "rounded-circle" %>
+        <% end %>
+
         <span><%= review.user.name %></span>
         <span id="rate_<%= review.id %>"></span>
         <script>
@@ -24,7 +27,7 @@
         <%= link_to '削除', admin_portfolio_review_path(portfolio, review), method: :delete, class: "float-right" %>
       </div>
       <div class="card-body">
-        <p><%= simple_format(review.comment) %></p>
+        <p><%= simple_format(h(review.comment)) %></p>
       </div>
     </div>
   <% end %>

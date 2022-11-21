@@ -1,29 +1,74 @@
-<%= @length %>
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-10 mt-5">
+    <div class="col mt-5 mx-2">
       <div class="row">
-        <div class="col-6">
+        <div class="col-sm-5 ml-auto">
         <%= image_tag @portfolio.get_image, class: "img-fluid" %>
         </div>
-        <div class="col-4">
-          <h5><%= @portfolio.name %></h5>
-          <p><%= simple_format(@portfolio.outline) %></p>
-          <p><%= @portfolio.url %></p>
-          <p><%= @portfolio.is_public %></p>
-
-          <% @portfolio.tags.each do |tag| %>
-            <%= tag.name %>
-          <% end %>
-          <% @portfolio.categorys.each do |category| %>
-            <%= category.name %>
-          <% end %>
-          <%= link_to '編集', edit_admin_portfolio_path(@portfolio) %>
+        <div class="col-sm-6">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td colspan="2"><h5><%= @portfolio.name %></h5></td>
+              </tr>
+              <tr>
+                <td colspan="2"><%= simple_format(h(@portfolio.outline)) %></td>
+              </tr>
+              <tr>
+                <td colspan="2"><%= @portfolio.url %></td>
+              </tr>
+              <tr>
+                <td>評価</td>
+                <td>
+                  <div id="rate_<%= @portfolio.id %>"></div>
+                  <script>
+                    $(document).on('turbolinks:load', function() {
+                      let raty_<%= @portfolio.id %> = document.querySelector('#rate_<%= @portfolio.id %>');
+                      rate_<%= @portfolio.id %>.innerHTML = ""
+                      let option_<%= @portfolio.id %> = {
+                          starOn: "<%= asset_path('star-on.png') %>",
+                          starOff: "<%= asset_path('star-off.png') %>",
+                          starHalf: "<%= asset_path('star-half.png') %>",
+                          score: "<%= @portfolio.evaluation_average %>",
+                          readOnly: true,
+                        };
+                      raty(raty_<%= @portfolio.id %> ,option_<%= @portfolio.id %>);
+                    });
+                  </script>
+                </td>
+              </tr>
+              <tr>
+                <td>タグ</td>
+                <td>
+                  <% @portfolio.tags.each do |tag| %>
+                    <%= tag.name %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>使用言語</td>
+                <td>
+                  <% @portfolio.categories.each do |category| %>
+                    <%= category.name %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <%= @portfolio.is_public %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= link_to '編集', edit_admin_portfolio_path(@portfolio) %></td>
+                <td><%= link_to '削除', admin_portfolio_path(@portfolio), method: :delete %></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="row mt-3">
-        <div class="col">
+      <div class="row mt-5">
+        <div class="col mx-auto">
+          <h5>レビュー一覧</h5>
           <%= render 'admin/reviews/index', portfolio: @portfolio, reviews: @portfolio.reviews %>
         </div>
       </div>

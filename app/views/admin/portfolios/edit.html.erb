@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h5>編集</h5>
+      <h4>編集</h4>
       <%= form_with model: @portfolio, url: admin_portfolio_path do |f| %>
         <div class="form-group">
           <%= f.label :image, "画像" %><br>
@@ -33,7 +33,7 @@
           <%= f.text_field :url, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :is_public, "公開ステータス" %><br>
+          <P>公開ステータス</P>
           <%= f.radio_button :is_public, :true %>
           <%= f.label :is_public_true, "公開する" %>
           <%= f.radio_button :is_public, :false %>
@@ -43,8 +43,6 @@
           <%= f.submit '投稿' %>
         </div>
       <% end %>
-
-      <%= link_to '削除', admin_portfolio_path(@portfolio), method: :delete %>
     </div>
   </div>
 </div>
