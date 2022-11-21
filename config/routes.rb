@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
 
-    get 'my_page' => 'users#show'
+    resources :users, only: [:show]
     get 'information/edit' => 'users#edit'
     patch 'information' => 'users#update'
     delete 'information/destroy' => 'users#destroy'
@@ -27,9 +27,6 @@ Rails.application.routes.draw do
     resources :portfolios, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :reviews, only: [:create, :edit, :update, :destroy]
     end
-
-    get '/search', to: 'searches#word_search'
-    get '/search', to: 'searches#tag_search'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

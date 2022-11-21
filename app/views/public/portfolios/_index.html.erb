@@ -17,7 +17,9 @@
               <%= link_to category.name, portfolios_path%>
             <% end %>
             <p>
-              <%= image_tag portfolio.user.get_profile_image(30, 30), class: "rounded-circle" %>
+              <%= link_to user_path(portfolio.user) do %>
+                <%= image_tag portfolio.user.get_profile_image(30, 30), class: "rounded-circle" %>
+              <% end %>
               <%= portfolio.user.name %>
             </p>
           </div>
