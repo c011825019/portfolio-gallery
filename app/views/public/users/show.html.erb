@@ -13,7 +13,7 @@
           <tr>
             <td colspan="2"><%= @user.introduction %></td>
           </tr>
-          <% if @user == current_user %>
+          <% if @user == current_user && @user.name != "guestuser" %>
             <tr>
               <td><%= link_to "編集", information_edit_path %></td>
               <td><%= link_to "削除", information_destroy_path, method: :delete %></td>
