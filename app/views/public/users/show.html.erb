@@ -3,4 +3,4 @@
 <%= @user.email %>
 <%= @user.introduction %>
 <%= link_to "編集", information_edit_path %>
-<%= link_to "削除", information_destroy_path %>
+<%= link_to "削除", information_destroy_path, method: :delete %>

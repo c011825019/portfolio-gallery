@@ -11,11 +11,10 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(Admin)
       admin_users_path
     else
-      my_page_path
+      user_path(resource)
     end
   end
 
-  # ログアウト後のリダイレクト先
   def after_sign_out_path_for(resource_or_scope)
     if resource_or_scope == :admin
       new_admin_session_path

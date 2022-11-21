@@ -2,7 +2,9 @@
   <% reviews.each do |review| %>
     <div class="card mt-2">
       <div class="card-header">
-        <%= image_tag review.user.get_profile_image(30, 30), class: "rounded-circle" %>
+        <%= link_to user_path(review.user) do %>
+          <%= image_tag review.user.get_profile_image(30, 30), class: "rounded-circle" %>
+        <% end %>
         <span><%= review.user.name %></span>
         <%= render 'public/reviews/static_evaluation', review: review %>
         <%= link_to '編集', edit_portfolio_review_path(portfolio, review), class: "float-right" %>
