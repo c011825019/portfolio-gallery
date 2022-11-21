@@ -1,6 +1,40 @@
-<%= image_tag @user.get_profile_image, size: "30x30" %>
-<%= @user.name %>
-<%= @user.email %>
-<%= @user.introduction %>
-<%= link_to "編集", edit_admin_user_path %>
-<%= link_to "削除", admin_user_path, method: :delete %>
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+      <h3>ユーザー詳細</h3>
+
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td class="col-3">ユーザーID</td>
+            <td><%= @user.id %></td>
+          </tr>
+          <tr>
+            <td class="col-3">プロフィール画像</td>
+            <td><%= image_tag @user.get_profile_image, class: "img-fluid" %></td>
+          </tr>
+          <tr>
+            <td class="col-3">ユーザー名</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td class="col-3">メールアドレス</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td class="col-3">紹介文</td>
+            <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= link_to "編集", edit_admin_user_path %>
+              <%= link_to "削除", admin_user_path, method: :delete %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
