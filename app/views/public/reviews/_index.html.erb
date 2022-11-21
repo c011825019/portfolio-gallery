@@ -7,8 +7,12 @@
         <% end %>
         <span><%= review.user.name %></span>
         <%= render 'public/reviews/static_evaluation', review: review %>
-        <%= link_to '編集', edit_portfolio_review_path(portfolio, review), class: "float-right" %>
-        <%= link_to '削除', portfolio_review_path(portfolio, review), method: :delete, class: "float-right" %>
+        <% if review.user == current_user %>
+          <div class="float-right">
+            <%= link_to '編集', edit_portfolio_review_path(portfolio, review) %>
+            <%= link_to '削除', portfolio_review_path(portfolio, review), method: :delete %>
+          </div>
+        <% end %>
       </div>
       <div class="card-body">
         <p><%= simple_format(h(review.comment)) %></p>
