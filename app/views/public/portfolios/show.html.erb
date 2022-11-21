@@ -37,10 +37,12 @@
                   <% end %>
                 </td>
               </tr>
-              <tr>
-                <td><%= link_to '編集', edit_portfolio_path(@portfolio) %></td>
-                <td><%= link_to '削除', portfolio_path(@portfolio), method: :delete %></td>
-              </tr>
+              <% if @portfolio.user == current_user %>
+                <tr>
+                  <td><%= link_to '編集', edit_portfolio_path(@portfolio) %></td>
+                  <td><%= link_to '削除', portfolio_path(@portfolio), method: :delete %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
