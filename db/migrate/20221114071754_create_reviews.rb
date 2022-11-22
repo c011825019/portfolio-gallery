@@ -1,8 +1,8 @@
 class CreateReviews < ActiveRecord::Migration[6.1]
   def change
     create_table :reviews do |t|
-      t.integer :portfolio_id, default: ""
-      t.integer :user_id, default: ""
+      t.integer :portfolio_id
+      t.integer :user_id
       t.text :comment, default: ""
       t.float :evaluation, default: ""
 
