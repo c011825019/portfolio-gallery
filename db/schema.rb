@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_050845) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,10 +74,20 @@ ActiveRecord::Schema.define(version: 2022_11_15_050845) do
 
   create_table "portfolios", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "name", null: false
-    t.text "outline", null: false
-    t.text "url", null: false
-    t.float "evaluation_average"
+    t.string "name", default: "", null: false
+    t.text "outline", default: "", null: false
+    t.text "url", default: "", null: false
+    t.float "evaluation_average", default: 0.0
+    t.boolean "is_public", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", default: "", null: false
+    t.text "outline", default: "", null: false
+    t.text "url", default: "", null: false
     t.boolean "is_public", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -86,14 +96,14 @@ ActiveRecord::Schema.define(version: 2022_11_15_050845) do
   create_table "reviews", force: :cascade do |t|
     t.integer "portfolio_id"
     t.integer "user_id"
-    t.text "comment"
+    t.text "comment", default: ""
     t.float "evaluation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -104,8 +114,8 @@ ActiveRecord::Schema.define(version: 2022_11_15_050845) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name", null: false
-    t.text "introduction"
+    t.string "name", default: "", null: false
+    t.string "introduction", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
