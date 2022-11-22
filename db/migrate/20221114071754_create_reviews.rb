@@ -3,7 +3,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
     create_table :reviews do |t|
       t.integer :portfolio_id
       t.integer :user_id
-      t.text :comment, default: ""
+      t.text :comment
       t.float :evaluation, default: ""
 
       t.timestamps
