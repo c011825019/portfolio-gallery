@@ -8,6 +8,9 @@ class Portfolio < ApplicationRecord
   has_many :portfolio_categorys, dependent: :destroy
   has_many :categories, through: :portfolio_categorys
 
+  validates :name, presence: true
+  validates :outline, length: { maximum: 300 }
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
