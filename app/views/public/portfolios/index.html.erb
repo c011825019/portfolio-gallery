@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <div class="mt-5">
+        <p>使用言語を選択</p>
+        <%= form_with model: @q, url: portfolios_path, method: :get, local: true do |f| %>
+          <%= f.collection_check_boxes(:categories_id_eq_any, Category.all, :id, :name) do |category| %>
+            <div>
+              <%= category.label do %>
+                <%= category.check_box %>
+                <%= category.text %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= f.submit "選択する", class: "btn btn-sm btn-primary btn-lg btn-block" %>
+        <% end %>
+      </div>
+      <div class="mt-5">
+        <p>検索する</p>
+        <%= form_with model: @q, url: portfolios_path, method: :get, local: true do |f| %>
+          <div class="form-group">
+            <%= f.label :name_cont, "キーワード" %>
+            <%= f.text_field :name_cont, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :tags_name_cont, "タグ" %>
+            <%= f.text_field :tags_name_cont, class: "form-control" %>
+          </div>
+          <p>評価</p>
+          <div class="form-row">
+            <div class="form-group">
+              <%= f.text_field :evaluation_average_gteq, :size=>"5", class: "form-control" %>
+            </div>
+            <span>～</span>
+            <div class="form-group">
+              <%= f.text_field :evaluation_average_lteq, :size=>"5", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.submit "検索", class: "btn btn-sm btn-primary btn-lg btn-block" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-8 offset-1">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ソート
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= sort_link(@q, :'created_at desc', '新しい順', hide_indicator: true, class: "dropdown-item") %>
+          <%= sort_link(@q, :'created_at asc', '古い順', hide_indicator: true, class: "dropdown-item") %>
+          <%= sort_link(@q, :'evaluation_average desc', '評価の高い順', hide_indicator: true, class: "dropdown-item") %>
+        </div>
+      </div>
+      <%= render 'public/portfolios/index', portfolios: @portfolios %>
+    </div>
+  </div>
+</div>

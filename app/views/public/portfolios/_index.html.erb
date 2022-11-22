@@ -1,0 +1,29 @@
+<div class="row">
+  <% portfolios.each do |portfolio| %>
+    <% if portfolio.is_public %>
+        <div class="card col-lg-5 mt-2 mx-1 px-0">
+          <div class="card-header">
+            <h5 class="card-title"><%= portfolio.name %></h5>
+          </div>
+          <div class="card-body">
+            <%= link_to portfolio_path(portfolio) do %>
+              <%= image_tag portfolio.get_image, class: "card-img-top" %>
+            <% end %>
+            <%= render 'public/portfolios/static_evaluation_average', portfolio: portfolio %>
+            <% portfolio.tags.each do |tag| %>
+              <%= link_to tag.name, portfolios_path(@q, :'q[tags_id_eq' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
+            <% end %><br>
+            <% portfolio.categories.each do |category| %>
+              <%= link_to category.name, portfolios_path%>
+            <% end %>
+            <p>
+              <%= link_to user_path(portfolio.user) do %>
+                <%= image_tag portfolio.user.get_profile_image, size: "30x30", class: "rounded-circle" %>
+              <% end %>
+              <%= portfolio.user.name %>
+            </p>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+</div>

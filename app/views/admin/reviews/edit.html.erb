@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @review, url: admin_portfolio_review_path do |f| %>
+        <div>
+          コメント<br>
+          <%= f.text_area :comment %>
+        </div>
+        評価
+        <div id="post_raty"></div>
+      　<script>
+          $(document).on('turbolinks:load', function() {
+            let raty_elem = document.querySelector('#post_raty');
+            raty_elem.innerHTML = ""
+            let option = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: "<%= @review.evaluation %>",
+                scoreName: 'review[evaluation]',
+            };
+            raty(raty_elem,option);
+          });
+        </script>
+        <div>
+          <%= f.submit '投稿' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

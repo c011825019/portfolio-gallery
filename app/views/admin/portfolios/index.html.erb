@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>投稿一覧</h5>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>投稿ID</th>
+            <th>投稿名</th>
+            <th>投稿者</th>
+            <th>投稿日</th>
+            <th>公開状態</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @portfolios.each do |portfolio| %>
+            <tr>
+              <td><%= portfolio.id %></td>
+              <td><%= link_to portfolio.name, admin_portfolio_path(portfolio) %></td>
+              <td><%= portfolio.user.name %></td>
+              <td><%= portfolio.created_at %></td>
+              <td>
+                <% if portfolio.is_public %>
+                <p class="text-success">公開中</p>
+                <% else %>
+                  <p class="text-secondary">非公開</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
