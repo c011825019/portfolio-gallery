@@ -9,6 +9,7 @@ class Public::PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
+    redirect_to portfolios_path if !@portfolio.is_public && @portfolio.user != current_user
     @reviews = Review.all
     @review = Review.new
   end
@@ -31,6 +32,7 @@ class Public::PortfoliosController < ApplicationController
 
   def edit
     @portfolio = Portfolio.find(params[:id])
+    redirect_to portfolio_path(@portfolio) if @portfolio.user != current_user
     @tag_list=@portfolio.tags.pluck(:name).join(',')
   end
 

@@ -1,6 +1,6 @@
 <div class="row">
   <% portfolios.each do |portfolio| %>
-    <% if portfolio.is_public %>
+    <% if portfolio.is_public || (!portfolio.is_public && portfolio.user == current_user) %>
         <div class="card col-lg-5 mt-2 mx-1 px-0">
           <div class="card-header">
             <h5 class="card-title"><%= portfolio.name %></h5>
