@@ -8,7 +8,7 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :tag_name, "タグ(カンマ区切りで5個までつけられます)" %>
+    <%= f.label :tag_name, "タグ (カンマ区切りで5個までつけられます)" %>
     <%= f.text_field :tag_name, value: @tag_list, class: "form-control" %>
   </div>
   <div class="form-group">
@@ -29,7 +29,7 @@
     <%= f.text_field :url, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :is_public, "公開ステータス(「公開しない」を選択することで下書きとして保存できます)" %><br>
+    <p>公開ステータス (「公開しない」を選択することで下書きとして保存できます)</p>
     <%= f.radio_button :is_public, :true %>
     <%= f.label :is_public_true, "公開する" %>
     <%= f.radio_button :is_public, :false %>
