@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <% if @user == current_user && @user.name != "guestuser" %>
+      <% if @portfolio.user != current_user && current_user.name != "guestuser" %>
         <div class="row mt-5">
           <div class="col">
             <h5>レビューを投稿</h5>
