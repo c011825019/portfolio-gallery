@@ -2,17 +2,21 @@
   <div class="form-group">
     <%= f.label :image, "画像" %><br>
     <%= f.file_field :image, accept: "image/*" %>
+    <%= render 'layouts/errors', object: portfolio, parameter: :image %>
   </div>
   <div class="form-group">
     <%= f.label :name, "ポートフォリオ名" %>
     <%= f.text_field :name, class: "form-control" %>
+    <%= render 'layouts/errors', object: portfolio, parameter: :name %>
   </div>
   <div class="form-group">
     <%= f.label :tag_name, "タグ (カンマ区切りで5個までつけられます)" %>
     <%= f.text_field :tag_name, value: @tag_list, class: "form-control" %>
+    <%= render 'layouts/errors', object: portfolio, parameter: :tag_name %>
   </div>
   <div class="form-group">
     <%= f.label :category_ids, "カテゴリー" %><br>
+    <%= render 'layouts/errors', object: portfolio, parameter: :category_ids %>
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
       <%= category.label do %>
         <%= category.check_box %>
@@ -22,11 +26,13 @@
   </div>
   <div class="form-group">
     <%= f.label :outline, "概要" %>
-     <%= f.text_area :outline, rows: 10, class: "form-control" %>
+    <%= f.text_area :outline, rows: 10, class: "form-control" %>
+    <%= render 'layouts/errors', object: portfolio, parameter: :outline %>
   </div>
   <div class="form-group">
     <%= f.label :url, "ポートフォリオのリンク" %>
     <%= f.text_field :url, class: "form-control" %>
+    <%= render 'layouts/errors', object: portfolio, parameter: :url %>
   </div>
   <div class="form-group">
     <p>公開ステータス (「公開しない」を選択することで下書きとして保存できます)</p>

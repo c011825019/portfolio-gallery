@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <%= form_with model: @review, url: portfolio_review_path do |f| %>
+      <%= form_with model: @review, url: portfolio_review_path, local: true do |f| %>
         <div class="form-group" id="star">
           <%= f.label :evaluation, "評価" %>
           <%= f.hidden_field :evaluation, id: :review_star, class: "form-control" %>
+          <%= render 'layouts/errors', object: @review, parameter: :evaluation %>
         </div>
         <div id="post_raty"></div>
       　<script>
@@ -25,6 +26,7 @@
         <div class="form-group">
           <%= f.label :comment, "コメント" %>
           <%= f.text_area :comment, class: "form-control" %>
+          <%= render 'layouts/errors', object: @review, parameter: :comment %>
         </div>
         <div class="form-group">
           <%= f.submit '投稿' %>
@@ -33,3 +35,7 @@
     </div>
   </div>
 </div>
+<!--render後に読み込み-->
+<script>
+  history.replaceState('', '', "/portfolios/<%= params[:portfolio_id].to_i %>/reviews/<%= @review.id %>/edit")
+</script>
