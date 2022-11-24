@@ -5,7 +5,6 @@
     </div>
   </div>
 </div>
-<!--render後に読み込み-->
-<script>
-  history.replaceState('', '', "/portfolios/<%= params[:portfolio_id].to_i %>/reviews/<%= @review.id %>/edit")
-</script>
+
+<!--render後のURLを指定-->
+<%= render 'layouts/specify_url', url: "/portfolios/#{@review.portfolio.id}/reviews/#{@review.id}/edit" %>

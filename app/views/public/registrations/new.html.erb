@@ -40,7 +40,6 @@
     </div>
   </div>
 </div>
-<!--render後に読み込み-->
-<script>
-  history.replaceState('', '', '/users/sign_up')
-</script>
+
+<!--render後のURLを指定-->
+<%= render 'layouts/specify_url', url: '/users/sign_up' %>
