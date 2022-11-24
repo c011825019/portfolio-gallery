@@ -52,36 +52,7 @@
         <div class="row mt-5">
           <div class="col">
             <h5>レビューを投稿</h5>
-            <%= form_with model: [@portfolio, @review], local: true do |f| %>
-              <div class="form-group" id="star">
-                <%= f.label :evaluation, "評価" %>
-                <%= f.hidden_field :evaluation, id: :review_star, class: "form-control" %>
-                <%= render 'layouts/errors', object: @review, parameter: :evaluation %>
-              </div>
-              <div id="post_raty"></div>
-            　<script>
-                $('#post_raty').empty();
-                $(document).on('turbolinks:load', function() {
-                let raty_elem = document.querySelector('#post_raty');
-                raty_elem.innerHTML = ""
-                let option = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    scoreName: 'review[evaluation]',
-                  };
-                raty(raty_elem,option);
-               });
-              </script>
-              <div class="form-group">
-                <%= f.label :comment, "コメント" %>
-                <%= f.text_area :comment, class: "form-control" %>
-                <%= render 'layouts/errors', object: @review, parameter: :comment %>
-              </div>
-              <div class="form-group">
-                <%= f.submit '投稿' %>
-              </div>
-            <% end %>
+            <%= render 'public/reviews/form', portfolio: @portfolio, review: @review %>
           </div>
         </div>
       <% end %>
