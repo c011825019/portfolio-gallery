@@ -6,13 +6,17 @@ class Public::ReviewsController < ApplicationController
     portfolio = Portfolio.find(params[:portfolio_id])
     @review = current_user.reviews.new(review_params)
     @review.portfolio_id = portfolio.id
-    @review.save
-    portfolio.evaluation_average = portfolio.reviews.average(:evaluation)
-    portfolio.save
-    redirect_to portfolio_path(portfolio)
+    if @review.save
+      portfolio.evaluation_average = portfolio.reviews.average(:evaluation)
+      portfolio.save
+      redirect_to portfolio_path(portfolio)
+    else
+      flash[:danger] = @review.errors.full_messages
+      render template: "public/portfolios/show"
+    end
   end
-
   def edit
+    # binding.pry
     @review = Review.find(params[:id])
   end
 

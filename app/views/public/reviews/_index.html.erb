@@ -9,7 +9,7 @@
         <%= render 'public/reviews/static_evaluation', review: review %>
         <% if review.user == current_user %>
           <div class="float-right">
-            <%= link_to edit_portfolio_review_path(portfolio, review) do %>
+            <%= link_to edit_portfolio_review_path(portfolio, review), data: {"turbolinks"=>false} do %>
               <i class="fas fa-edit" style="color: gray;"></i>
             <% end %>
             <%= link_to portfolio_review_path(portfolio, review), method: :delete do %>
