@@ -1,29 +1,44 @@
 <div class="row">
   <% portfolios.each do |portfolio| %>
     <% if portfolio.is_public || (!portfolio.is_public && portfolio.user == current_user) %>
-        <div class="card col-lg-5 mt-2 mx-1 px-0">
-          <div class="card-header">
-            <h5 class="card-title"><%= portfolio.name %></h5>
-          </div>
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <%= link_to portfolio_path(portfolio) do %>
+            <%= image_tag portfolio.get_image, class: "card-img-top" %>
+          <% end %>
+
           <div class="card-body">
-            <%= link_to portfolio_path(portfolio) do %>
-              <%= image_tag portfolio.get_image, class: "card-img-top" %>
-            <% end %>
-            <%= render 'public/portfolios/static_evaluation_average', portfolio: portfolio %>
-            <% portfolio.tags.each do |tag| %>
-              <%= link_to tag.name, portfolios_path(@q, :'q[tags_id_eq' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
-            <% end %><br>
-            <% portfolio.categories.each do |category| %>
-              <%= link_to category.name, portfolios_path%>
-            <% end %>
+            <h4 class="card-title"><%= portfolio.name %></h4>
             <p>
               <%= link_to user_path(portfolio.user) do %>
                 <%= image_tag portfolio.user.get_profile_image, size: "30x30", class: "rounded-circle" %>
               <% end %>
               <%= portfolio.user.name %>
             </p>
+            <div>
+              <% portfolio.tags.each do |tag| %>
+                <%= link_to tag.name, portfolios_path(@q, :'q[tags_id_eq]' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
+              <% end %>
+            </div>
+            <div>
+              <% portfolio.categories.each do |category| %>
+                <%= link_to category.name, portfolios_path%>
+              <% end %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-6 text-center">
+                <i class="fas fa-comment-alt"></i><%= portfolio.reviews.count %>
+              </div>
+              <div class="col-6 text-center">
+                <i class="fas fa-star"></i><%= portfolio.evaluation_average %>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     <% end %>
   <% end %>
+
 </div>
