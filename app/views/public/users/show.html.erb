@@ -1,28 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 mt-3">
+    <div class="col-md-3 mt-5">
       <h4>ユーザー詳細</h4>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td colspan="2"><%= image_tag @user.get_profile_image, class: "rounded mx-auto d-block img-fluid" %></td>
-          </tr>
-          <tr>
-            <td colspan="2"><%= @user.name %></td>
-          </tr>
-          <tr>
-            <td colspan="2"><%= @user.introduction %></td>
-          </tr>
-          <% if @user == current_user && @user.name != "guestuser" %>
-            <tr>
-              <td><%= link_to "編集", information_edit_path %></td>
-              <td><%= link_to "削除", information_destroy_path, method: :delete %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= image_tag @user.get_profile_image, size: "100x100", class: "rounded" %>
+      <p><%= @user.name %></p>
+      <p><%= simple_format(h(@user.introduction)) %></p>
+      <% if @user == current_user && @user.name != "guestuser" %>
+        <%= link_to "編集", information_edit_path %>|
+        <%= link_to "削除", information_destroy_path, method: :delete %>
+      <% end %>
     </div>
-    <div class="col-md-6 offset-md-1  mt-3">
+    <div class="col-md-8 offset-1 mt-5">
       <h4>ユーザー投稿一覧</h4>
       <%= render 'public/portfolios/index', portfolios: @user.portfolios %>
     </div>
