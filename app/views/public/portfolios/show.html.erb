@@ -1,50 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col mt-5 mx-2">
+<div class="container px-4 px-lg-5 my-5">
+  <div class="row gx-4 gx-lg-5 align-items-center">
+    <div class="col">
       <div class="row">
-        <div class="col-sm-5 ml-auto">
-        <%= image_tag @portfolio.get_image, class: "img-fluid" %>
+        <div class="col-md-6">
+        <%= image_tag @portfolio.get_image, class: "card-img-top mb-5 mb-md-0" %>
         </div>
-        <div class="col-sm-6">
-          <table class="table table-borderless">
-            <tbody>
-              <tr>
-                <td colspan="2"><h5><%= @portfolio.name %></h5></td>
-              </tr>
-              <tr>
-                <td colspan="2"><%= simple_format(h(@portfolio.outline)) %></td>
-              </tr>
-              <tr>
-                <td colspan="2"><%= link_to 'ポートフォリオを見る', @portfolio.url %></td>
-              </tr>
-              <tr>
-                <td>評価</td>
-                <td><%= render 'public/portfolios/static_evaluation_average', portfolio: @portfolio %></td>
-              </tr>
-              <tr>
-                <td>タグ</td>
-                <td>
-                  <% @portfolio.tags.each do |tag| %>
-                    <%= link_to tag.name, portfolios_path(:'q[tags_id_eq' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td>使用言語</td>
-                <td>
-                  <% @portfolio.categories.each do |category| %>
-                    <%= category.name %>
-                  <% end %>
-                </td>
-              </tr>
-              <% if @portfolio.user == current_user %>
-                <tr>
-                  <td><%= link_to '編集', edit_portfolio_path(@portfolio) %></td>
-                  <td><%= link_to '削除', portfolio_path(@portfolio), method: :delete %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+        <div class="col-md-6">
+          <h3><%= @portfolio.name %></h3>
+
+          <h5>概要</h5>
+          <p><%= simple_format(h(@portfolio.outline)) %></p>
+
+          <h5>ポートフォリオのリンク</h5>
+          <P><%= link_to @portfolio.url %></P>
+
+          <h5>評価</h5>
+          <%= render 'public/portfolios/static_evaluation_average', portfolio: @portfolio %>
+
+          <h5>タグ</h5>
+          <% @portfolio.tags.each do |tag| %>
+            <%= link_to tag.name, portfolios_path(:'q[tags_id_eq' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
+          <% end %>
+
+          <h5>使用言語</h5>
+          <% @portfolio.categories.each do |category| %>
+            <%= category.name %>
+          <% end %>
+
+          <% if @portfolio.user == current_user %>
+            <div>
+              <%= link_to '編集', edit_portfolio_path(@portfolio) %>
+              <%= link_to '削除', portfolio_path(@portfolio), method: :delete %>
+            </div>
+          <% end %>
         </div>
       </div>
 
@@ -58,7 +46,7 @@
       <% end %>
 
       <div class="row mt-5">
-        <div class="col mx-auto">
+        <div class="col">
           <h5>レビュー一覧</h5>
           <%= render 'public/reviews/index', portfolio: @portfolio, reviews: @portfolio.reviews %>
         </div>
