@@ -42,26 +42,25 @@
   margin-bottom: 100px;
 }
 
-.guest-sign-in-btn {
-  background: transparent;
-  color: silver;
-  border: 2px solid silver;
-  text-align: center;text-decoration: none;
-  border-radius: 30px;
+.main-visual-btn {
+	text-decoration: none;
+	width: 120px;
+	margin: auto 2%;
+	padding: 10px 40px;
+	font-weight: bold;
+	border: 2px solid #d3d3d3;
+	color: #d3d3d3;
+	border-radius: 100vh;
+	transition: 0.5s;
 }
 
-.sign-in-btn {
-  background: transparent;
-  color: aqua;
-  border: 2px solid aqua;
-  text-align: center;text-decoration: none;
-  border-radius: 30px;
+.main-visual-btn:hover {
+	color: #fff;
+	background: #d3d3d3;
+	text-decoration: none;
 }
 
-.sign-up-btn {
-  background: transparent;
-  color: lime;
-  border: 2px solid lime;
-  text-align: center;text-decoration: none;
-  border-radius: 30px;
+.top-text {
+  margin: 0;
+  text-align:right;
 }
