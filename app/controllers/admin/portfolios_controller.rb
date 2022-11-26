@@ -2,8 +2,7 @@ class Admin::PortfoliosController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @q = Portfolio.ransack(params[:q])
-    @portfolios = @q.result(distinct: true)
+    @portfolios = Portfolio.page(params[:page]).all.per(10)
   end
 
   def show

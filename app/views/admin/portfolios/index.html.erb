@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h5>投稿一覧</h5>
+      <h4>投稿一覧</h4>
       <table class="table">
         <thead class="thead-light">
           <tr>
@@ -30,6 +30,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @portfolios %>
     </div>
   </div>
 </div>
