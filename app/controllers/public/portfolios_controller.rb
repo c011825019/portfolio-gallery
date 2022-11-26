@@ -58,7 +58,7 @@ class Public::PortfoliosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:portfolio).permit(:name, :image, :outline, :url, :is_public, category_ids: [])
+    params.require(:portfolio).permit(:name, :image, :outline, :site_url, :code_url, :is_public, category_ids: [])
   end
 
   def ensure_guest_user

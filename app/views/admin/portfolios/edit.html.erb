@@ -6,17 +6,20 @@
         <div class="form-group">
           <%= f.label :image, "画像" %><br>
           <%= f.file_field :image, accept: "image/*" %>
+          <%= render 'layouts/errors', object: @portfolio, parameter: :image %>
         </div>
         <div class="form-group">
           <%= f.label :name, "ポートフォリオ名" %>
           <%= f.text_field :name, class: "form-control" %>
+          <%= render 'layouts/errors', object: @portfolio, parameter: :name %>
         </div>
         <div class="form-group">
-          <%= f.label :tag_name, "タグ(5個までつけられます)" %>
+          <%= f.label :tag_name, "タグ (カンマ区切りで5個までつけられます)" %>
           <%= f.text_field :tag_name, value: @tag_list, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :category_ids, "カテゴリー" %><br>
+          <%= render 'layouts/errors', object: @portfolio, parameter: :category_ids %>
           <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
             <%= category.label do %>
               <%= category.check_box %>
@@ -26,14 +29,21 @@
         </div>
         <div class="form-group">
           <%= f.label :outline, "概要" %>
-           <%= f.text_area :outline, rows: 10, class: "form-control" %>
+          <%= f.text_area :outline, rows: 10, class: "form-control" %>
+          <%= render 'layouts/errors', object: @portfolio, parameter: :outline %>
         </div>
         <div class="form-group">
-          <%= f.label :url, "ポートフォリオのリンク" %>
-          <%= f.text_field :url, class: "form-control" %>
+          <%= f.label :site_url, "ポートフォリオのリンク" %>
+          <%= f.text_field :site_url, class: "form-control" %>
+          <%= render 'layouts/errors', object: @portfolio, parameter: :site_url %>
         </div>
         <div class="form-group">
-          <P>公開ステータス</P>
+          <%= f.label :code_url, "ソースコードのリンク" %>
+          <%= f.text_field :code_url, class: "form-control" %>
+          <%= render 'layouts/errors', object: @portfolio, parameter: :code_url %>
+        </div>
+        <div class="form-group">
+          <p>公開ステータス (「公開しない」を選択することで下書きとして保存できます)</p>
           <%= f.radio_button :is_public, :true %>
           <%= f.label :is_public_true, "公開する" %>
           <%= f.radio_button :is_public, :false %>
@@ -46,3 +56,6 @@
     </div>
   </div>
 </div>
+
+<!--render後のURLを指定-->
+<%= render 'layouts/specify_url', url: "/admin/portfolios/#{@portfolio.id}/edit" %>

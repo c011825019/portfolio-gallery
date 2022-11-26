@@ -27,7 +27,6 @@
     </div>
   </div>
 </div>
-<!--render後に読み込み-->
-<script>
-  history.replaceState('', '', "/information/edit")
-</script>
+
+<!--render後のURLを指定-->
+<%= render 'layouts/specify_url', url: '/information/edit' %>

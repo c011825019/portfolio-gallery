@@ -10,6 +10,8 @@ class Portfolio < ApplicationRecord
 
   validates :name, length: {maximum: 50 }, presence: true
   validates :outline, length: { maximum: 300 }
+  validates :site_url, presence: true
+  validates :code_url, presence: true
 
   def get_image
     unless image.attached?

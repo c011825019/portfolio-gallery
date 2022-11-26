@@ -11,8 +11,7 @@ class Admin::CategorysController < ApplicationController
     if @category.save
       redirect_to admin_categorys_path
     else
-      @categorys = Category.all
-      @category = Category.new
+      @categorys = Category.all.page(params[:page]).per(20)
       render :index
     end
   end
@@ -26,9 +25,7 @@ class Admin::CategorysController < ApplicationController
     if @category.update(category_params)
       redirect_to admin_categorys_path
     else
-      @categorys = Category.all
-      @category = Category.new
-      render :index
+      render :edit
     end
   end
 
