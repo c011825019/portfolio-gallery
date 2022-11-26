@@ -4,7 +4,7 @@ class Public::PortfoliosController < ApplicationController
 
   def index
     @q = Portfolio.ransack(params[:q])
-    @portfolios = @q.result
+    @portfolios = @q.result.page(params[:page]).per(6)
   end
 
   def show
