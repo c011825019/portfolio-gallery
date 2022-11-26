@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-3 mt-5">
+    <div class="col-lg-2 col-md-3 mt-5">
       <h4>ユーザー詳細</h4>
       <%= image_tag @user.get_profile_image, size: "100x100", class: "rounded" %>
       <p><%= @user.name %></p>
@@ -10,7 +10,7 @@
         <%= link_to "削除", information_destroy_path, method: :delete %>
       <% end %>
     </div>
-    <div class="col-md-8 offset-1 mt-5">
+    <div class="col-md-9 mt-5">
       <h4>ユーザー投稿一覧</h4>
       <%= render 'public/portfolios/index', portfolios: @user.portfolios %>
     </div>
