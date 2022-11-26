@@ -1,7 +1,7 @@
 <div id="rate_<%= review.id %>"></div>
 <script>
-  $('#rate_<%= review.id %>').empty();
   $(document).on('turbolinks:load', function() {
+    $('#rate_<%= review.id %>').empty();
     let raty_<%= review.id %> = document.querySelector('#rate_<%= review.id %>');
     rate_<%= review.id %>.innerHTML = ""
     let option_<%= review.id %> = {
