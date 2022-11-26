@@ -15,7 +15,7 @@
                 <%= link_to edit_portfolio_review_path(portfolio, review), data: {"turbolinks"=>false} do %>
                   <i class="fas fa-edit" style="color: gray;"></i>
                 <% end %>
-                <%= link_to portfolio_review_path(portfolio, review), method: :delete do %>
+                <%= link_to portfolio_review_path(portfolio, review), method: :delete, data: { confirm: '削除しますか？' } do %>
                   <i class="fas fa-trash" style="color: gray;"></i>
                 <% end %>
               </div>
