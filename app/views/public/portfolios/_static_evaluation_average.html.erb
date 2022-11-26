@@ -1,5 +1,6 @@
 <div id="rate_<%= portfolio.id %>"></div>
 <script>
+  $('#rate-<%= portfolio.id %>').empty();
   $(document).on('turbolinks:load', function() {
     let raty_<%= portfolio.id %> = document.querySelector('#rate_<%= portfolio.id %>');
     rate_<%= portfolio.id %>.innerHTML = ""

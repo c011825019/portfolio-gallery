@@ -1,17 +1,19 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-3">
+    <div class="col-lg-2 col-md-3">
       <div class="mt-5">
         <p>使用言語を選択</p>
         <%= form_with model: @q, url: portfolios_path, method: :get, local: true do |f| %>
-          <%= f.collection_check_boxes(:categories_id_eq_any, Category.all, :id, :name) do |category| %>
-            <div>
-              <%= category.label do %>
-                <%= category.check_box %>
-                <%= category.text %>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="row">
+            <%= f.collection_check_boxes(:categories_id_eq_any, Category.all, :id, :name) do |category| %>
+              <div class="col-md-12 col-4">
+                <%= category.label do %>
+                  <%= category.check_box %>
+                  <%= category.text %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
           <%= f.submit "選択する", class: "btn btn-sm btn-primary btn-lg btn-block" %>
         <% end %>
       </div>
@@ -42,8 +44,8 @@
         <% end %>
       </div>
     </div>
-    <div class="col-8 offset-1">
-      <div class="dropdown">
+    <div class="col-md-9 mt-5">
+      <div class="dropdown float-right mr-5">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ソート
         </button>

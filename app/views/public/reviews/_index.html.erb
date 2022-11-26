@@ -1,20 +1,30 @@
 <div class="overflow-auto h-100">
   <% reviews.each do |review| %>
     <div class="card mt-2">
-      <div class="card-header">
-        <%= link_to user_path(review.user) do %>
-          <%= image_tag review.user.get_profile_image, size: "30x30", class: "rounded-circle" %>
-        <% end %>
-        <span><%= review.user.name %></span>
-        <%= render 'public/reviews/static_evaluation', review: review %>
-        <% if review.user == current_user %>
-          <div class="float-right">
-            <%= link_to '編集', edit_portfolio_review_path(portfolio, review) %>
-            <%= link_to '削除', portfolio_review_path(portfolio, review), method: :delete %>
+      <div class="card-header px-0">
+        <div class="row">
+          <div class="col-1 mx-3 px-3">
+            <%= link_to user_path(review.user) do %>
+              <%= image_tag review.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+            <% end %>
           </div>
-        <% end %>
+          <div class="col-md-10 col-9 ml-2 pr-0">
+            <%= review.user.name %>
+            <% if review.user == current_user %>
+              <div class="float-right">
+                <%= link_to edit_portfolio_review_path(portfolio, review), data: {"turbolinks"=>false} do %>
+                  <i class="fas fa-edit" style="color: gray;"></i>
+                <% end %>
+                <%= link_to portfolio_review_path(portfolio, review), method: :delete, data: { confirm: '削除しますか？' } do %>
+                  <i class="fas fa-trash" style="color: gray;"></i>
+                <% end %>
+              </div>
+            <% end %>
+            <%= render 'public/reviews/static_evaluation', review: review %>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
+      <div class="card-body py-0">
         <p><%= simple_format(h(review.comment)) %></p>
       </div>
     </div>

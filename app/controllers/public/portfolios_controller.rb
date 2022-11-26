@@ -26,6 +26,7 @@ class Public::PortfoliosController < ApplicationController
       @portfolio.save_tags(tag_list)
       redirect_to portfolio_path(@portfolio)
     else
+      @tag_list=tag_list.join(',')
       render :new
     end
   end
@@ -43,6 +44,7 @@ class Public::PortfoliosController < ApplicationController
       @portfolio.save_tags(tag_list)
       redirect_to portfolio_path(@portfolio)
     else
+      @tag_list=@portfolio.tags.pluck(:name).join(',')
       render :edit
     end
   end

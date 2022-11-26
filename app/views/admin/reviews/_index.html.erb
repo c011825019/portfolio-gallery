@@ -24,7 +24,7 @@
         </script>
 
         <%= link_to '編集', edit_admin_portfolio_review_path(portfolio, review), class: "float-right" %>
-        <%= link_to '削除', admin_portfolio_review_path(portfolio, review), method: :delete, class: "float-right" %>
+        <%= link_to '削除', admin_portfolio_review_path(portfolio, review), method: :delete, class: "float-right", data: { confirm: '削除しますか？' } %>
       </div>
       <div class="card-body">
         <p><%= simple_format(h(review.comment)) %></p>
