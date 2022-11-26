@@ -60,7 +60,7 @@
               </tr>
               <tr>
                 <td><%= link_to '編集', edit_admin_portfolio_path(@portfolio) %></td>
-                <td><%= link_to '削除', admin_portfolio_path(@portfolio), method: :delete %></td>
+                <td><%= link_to '削除', admin_portfolio_path(@portfolio), method: :delete, data: { confirm: '削除しますか？' } %></td>
               </tr>
             </tbody>
           </table>

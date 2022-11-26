@@ -19,7 +19,7 @@
 
           <h5>タグ</h5>
           <% @portfolio.tags.each do |tag| %>
-            <%= link_to tag.name, portfolios_path(:'q[tags_id_eq' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
+            <%= link_to tag.name, portfolios_path(:'q[tags_id_eq]' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
           <% end %>
 
           <h5>使用言語</h5>
@@ -30,7 +30,7 @@
           <% if @portfolio.user == current_user %>
             <div>
               <%= link_to '編集', edit_portfolio_path(@portfolio) %>
-              <%= link_to '削除', portfolio_path(@portfolio), method: :delete %>
+              <%= link_to '削除', portfolio_path(@portfolio), method: :delete, data: { confirm: '削除しますか？' } %>
             </div>
           <% end %>
         </div>
