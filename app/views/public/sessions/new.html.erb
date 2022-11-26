@@ -17,7 +17,12 @@
         </div>
       <% end %>
 
-      <%= render "public/shared/links" %>
+      <h4>新規登録がお済でない方</h4>
+      <p><%= render "public/shared/links" %>から新規登録を行ってください</p>
+      <p>
+        ゲストログインは<%= link_to 'こちら', users_guest_sign_in_path, method: :post %></br>
+        ※投稿・レビューの閲覧のみ行うことができます
+      </p>
     </div>
   </div>
 </div>
