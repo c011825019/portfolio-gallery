@@ -11,12 +11,12 @@ class Public::ReviewsController < ApplicationController
       portfolio.save
       redirect_to portfolio_path(portfolio)
     else
-      flash[:danger] = @review.errors.full_messages
+      @q = portfolio.reviews.ransack(params[:q])
+      @reviews = @q.result
       render template: "public/portfolios/show"
     end
   end
   def edit
-    # binding.pry
     @review = Review.find(params[:id])
   end
 
