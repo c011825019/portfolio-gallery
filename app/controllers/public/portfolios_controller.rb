@@ -10,7 +10,8 @@ class Public::PortfoliosController < ApplicationController
   def show
     @portfolio = Portfolio.find(params[:id])
     redirect_to portfolios_path if !@portfolio.is_public && @portfolio.user != current_user
-    @reviews = Review.all
+    @q = @portfolio.reviews.ransack(params[:q])
+    @reviews = @q.result
     @review = Review.new
   end
 
