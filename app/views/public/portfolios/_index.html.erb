@@ -3,7 +3,7 @@
     <% if portfolio.is_public || (!portfolio.is_public && portfolio.user == current_user) %>
       <div class="col-lg-4 col-md-6">
         <div class="card mb-4">
-          <%= link_to portfolio_path(portfolio) do %>
+          <%= link_to portfolio_path(portfolio), 'data-turbolinks': false do %><!--遷移後星の画像が消えるのを解消-->
             <%= image_tag portfolio.get_image, class: "card-img-top" %>
           <% end %>
 

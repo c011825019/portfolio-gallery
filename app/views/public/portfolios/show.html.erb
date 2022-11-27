@@ -51,7 +51,9 @@
       <div class="row mt-5">
         <div class="col">
           <h5>レビュー一覧</h5>
-          <%= render 'public/reviews/index', portfolio: @portfolio, reviews: @portfolio.reviews %>
+            <div class="portfolio-reviews-index">
+              <%= render 'public/reviews/index', portfolio: @portfolio, reviews: @portfolio.reviews %>
+            </div>
         </div>
       </div>
     </div>
