@@ -22,12 +22,12 @@
 
           <h5>タグ</h5>
           <% @portfolio.tags.each do |tag| %>
-            <%= link_to tag.name, portfolios_path(:'q[tags_id_eq]' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
+            <%= link_to tag.name, portfolios_path(:'q[tags_id_eq]' => "#{tag.id}") %>
           <% end %>
 
           <h5>使用言語</h5>
           <% @portfolio.categories.each do |category| %>
-            <%= category.name %>
+            <%= link_to category.name, portfolios_path(@q, :'q[categories_id_eq]' => "#{category.id}") %>
           <% end %>
 
           <% if @portfolio.user == current_user %>

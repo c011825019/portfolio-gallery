@@ -17,12 +17,12 @@
             </p>
             <div>
               <% portfolio.tags.each do |tag| %>
-                <%= link_to tag.name, portfolios_path(@q, :'q[tags_id_eq]' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
+                <%= link_to tag.name, portfolios_path(@q, :'q[tags_id_eq]' => "#{tag.id}") %>
               <% end %>
             </div>
             <div>
               <% portfolio.categories.each do |category| %>
-                <%= link_to category.name, portfolios_path%>
+                <%= link_to category.name, portfolios_path(@q, :'q[categories_id_eq]' => "#{category.id}") %>
               <% end %>
             </div>
           </div>
