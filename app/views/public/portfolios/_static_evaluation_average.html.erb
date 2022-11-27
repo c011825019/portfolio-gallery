@@ -1,4 +1,4 @@
-<span id="rate_<%= portfolio.id %>"></span>(<%= portfolio.evaluation_average.floor(2) %>)
+<span id="rate_<%= portfolio.id %>"></span>(<%= portfolio.evaluation_average.floor(1) %>)
 <script>
   $(document).on('turbolinks:load', function() {
     $('#rate-<%= portfolio.id %>').empty();

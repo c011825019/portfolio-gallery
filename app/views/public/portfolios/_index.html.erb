@@ -32,7 +32,7 @@
                 <i class="fas fa-comment-alt"></i><%= portfolio.reviews.count %>
               </div>
               <div class="col-6 text-center">
-                <i class="fas fa-star"></i><%= portfolio.evaluation_average %>
+                <i class="fas fa-star"></i><%= portfolio.evaluation_average.floor(1) %>
               </div>
             </div>
           </div>
