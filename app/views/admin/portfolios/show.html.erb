@@ -18,7 +18,7 @@
           <P><%= link_to @portfolio.code_url %></P>
 
           <h5>評価</h5>
-          <div id="rate_<%= @portfolio.id %>"></div>
+          <%= render 'public/portfolios/static_evaluation_average', portfolio: @portfolio %>
 
           <h5>タグ</h5>
           <% @portfolio.tags.each do |tag| %>
@@ -51,19 +51,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).on('turbolinks:load', function() {
-    $('#rate-<%= @portfolio.id %>').empty();
-    let raty_<%= @portfolio.id %> = document.querySelector('#rate_<%= @portfolio.id %>');
-    rate_<%= @portfolio.id %>.innerHTML = ""
-    let option_<%= @portfolio.id %> = {
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        score: "<%= @portfolio.evaluation_average %>",
-        readOnly: true,
-      };
-    raty(raty_<%= @portfolio.id %> ,option_<%= @portfolio.id %>);
-  });
-</script>
