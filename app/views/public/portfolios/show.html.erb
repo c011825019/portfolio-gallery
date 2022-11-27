@@ -12,10 +12,10 @@
           <p><%= simple_format(h(@portfolio.outline)) %></p>
 
           <h5>ポートフォリオのリンク</h5>
-          <P><%= link_to @portfolio.site_url %></P>
+          <P><%= link_to "#{@portfolio.site_url}", @portfolio.site_url %></P>
 
           <h5>ソースコードのリンク</h5>
-          <P><%= link_to @portfolio.code_url %></P>
+          <P><%= link_to "#{@portfolio.code_url}", @portfolio.code_url %></P>
 
           <h5>評価</h5>
           <%= render 'public/portfolios/static_evaluation_average', portfolio: @portfolio %>
