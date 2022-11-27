@@ -35,6 +35,13 @@
           <%= f.submit "新規登録", class: "btn btn-sm btn-primary" %>
         </div>
       <% end %>
+
+      <h4>新規登録がお済の方</h4>
+      <p><%= render "public/shared/links" %>からログインしてください</p>
+      <p>
+        ゲストログインは<%= link_to 'こちら', users_guest_sign_in_path, method: :post %></br>
+        ※投稿・レビューの閲覧のみ行うことができます
+      </p>
     </div>
   </div>
 </div>
