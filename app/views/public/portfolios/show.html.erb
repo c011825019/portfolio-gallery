@@ -1,5 +1,5 @@
-<div class="container px-4 px-lg-5 my-5">
-  <div class="row gx-4 align-items-center">
+<div class="container my-5">
+  <div class="row align-items-center">
     <div class="col">
       <div class="row">
         <div class="col-md-6">
@@ -12,19 +12,22 @@
           <p><%= simple_format(h(@portfolio.outline)) %></p>
 
           <h5>ポートフォリオのリンク</h5>
-          <P><%= link_to @portfolio.url %></P>
+          <P><%= link_to @portfolio.site_url %></P>
+
+          <h5>ソースコードのリンク</h5>
+          <P><%= link_to @portfolio.code_url %></P>
 
           <h5>評価</h5>
           <%= render 'public/portfolios/static_evaluation_average', portfolio: @portfolio %>
 
           <h5>タグ</h5>
           <% @portfolio.tags.each do |tag| %>
-            <%= link_to tag.name, portfolios_path(:'q[tags_id_eq]' => "#{tag.id}"), class: "btn btn-sm btn-info" %>
+            <%= link_to tag.name, portfolios_path(:'q[tags_id_eq]' => "#{tag.id}") %>
           <% end %>
 
           <h5>使用言語</h5>
           <% @portfolio.categories.each do |category| %>
-            <%= category.name %>
+            <%= link_to category.name, portfolios_path(@q, :'q[categories_id_eq]' => "#{category.id}") %>
           <% end %>
 
           <% if @portfolio.user == current_user %>
@@ -39,16 +42,31 @@
       <% if @portfolio.user != current_user && current_user.name != "guestuser" %>
         <div class="row mt-5">
           <div class="col">
-            <h5>レビューを投稿</h5>
+            <h4>レビューを投稿</h4>
             <%= render 'public/reviews/form', portfolio: @portfolio, review: @review %>
           </div>
         </div>
       <% end %>
 
       <div class="row mt-5">
-        <div class="col">
-          <h5>レビュー一覧</h5>
-          <%= render 'public/reviews/index', portfolio: @portfolio, reviews: @portfolio.reviews %>
+        <div class="col-12">
+          <h4 class="float-left">投稿一覧(全<%= @reviews.all.count %>件)</h4>
+          <div class="dropdown float-right mr-5">
+            <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ソート
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <%= sort_link(@q, :'created_at desc', '新しい順', hide_indicator: true, class: "dropdown-item") %>
+              <%= sort_link(@q, :'created_at asc', '古い順', hide_indicator: true, class: "dropdown-item") %>
+              <%= sort_link(@q, :'evaluation desc', '評価の高い順', hide_indicator: true, class: "dropdown-item") %>
+              <%= sort_link(@q, :'evaluation asc', '評価の低い順', hide_indicator: true, class: "dropdown-item") %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="portfolio-reviews-index">
+            <%= render 'public/reviews/index', portfolio: @portfolio, reviews: @reviews %>
+          </div>
         </div>
       </div>
     </div>

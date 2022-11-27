@@ -4,13 +4,14 @@ class Public::PortfoliosController < ApplicationController
 
   def index
     @q = Portfolio.ransack(params[:q])
-    @portfolios = @q.result
+    @portfolios = @q.result.page(params[:page]).per(6)
   end
 
   def show
     @portfolio = Portfolio.find(params[:id])
     redirect_to portfolios_path if !@portfolio.is_public && @portfolio.user != current_user
-    @reviews = Review.all
+    @q = @portfolio.reviews.ransack(params[:q])
+    @reviews = @q.result
     @review = Review.new
   end
 
@@ -58,7 +59,7 @@ class Public::PortfoliosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:portfolio).permit(:name, :image, :outline, :url, :is_public, category_ids: [])
+    params.require(:portfolio).permit(:name, :image, :outline, :site_url, :code_url, :is_public, category_ids: [])
   end
 
   def ensure_guest_user

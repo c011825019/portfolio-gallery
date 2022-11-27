@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <h4 class="my-3">ユーザー編集</h4>
       <%= form_with model: @user, url: information_path do |f| %>
         <div class="form-group">
           <%= f.label :profile_image, "プロフィール画像" %><br>
@@ -20,14 +21,13 @@
           <%= f.label :introduction, "紹介文" %>
           <%= f.text_area :introduction, class: "form-control" %>
         </div>
-        <div class="form-group">
-          <%= f.submit '変更を保存', class: "btn btn-sm btn-success" %>
+        <div class="form-group text-center">
+          <%= f.submit '変更を保存', class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-<!--render後に読み込み-->
-<script>
-  history.replaceState('', '', "/information/edit")
-</script>
+
+<!--render後のURLを指定-->
+<%= render 'layouts/specify_url', url: '/information/edit' %>

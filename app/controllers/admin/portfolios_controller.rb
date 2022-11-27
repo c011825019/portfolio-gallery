@@ -2,8 +2,7 @@ class Admin::PortfoliosController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @q = Portfolio.ransack(params[:q])
-    @portfolios = @q.result(distinct: true)
+    @portfolios = Portfolio.page(params[:page]).all.per(10)
   end
 
   def show
@@ -37,6 +36,6 @@ class Admin::PortfoliosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:portfolio).permit(:name, :image, :outline, :url, :is_public, category_ids: [])
+    params.require(:portfolio).permit(:name, :image, :outline, :site_url, :code_url, :is_public, category_ids: [])
   end
 end
