@@ -6,3 +6,24 @@ ja:
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
+      
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認用)
+      
+      portfolio:
+        name: ポートフォリオ名
+        outline: 概要
+        site_url: サイトのURL
+        code_url: ソースコードのURL
+        
+      review:
+        evaluation: 評価
+        comment: コメント
+        
+      category:
+        name: カテゴリー名
