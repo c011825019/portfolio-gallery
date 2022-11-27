@@ -54,6 +54,7 @@
           <%= sort_link(@q, :'created_at desc', '新しい順', hide_indicator: true, class: "dropdown-item") %>
           <%= sort_link(@q, :'created_at asc', '古い順', hide_indicator: true, class: "dropdown-item") %>
           <%= sort_link(@q, :'evaluation_average desc', '評価の高い順', hide_indicator: true, class: "dropdown-item") %>
+          <%= sort_link(@q, :'evaluation_average asc', '評価の低い順', hide_indicator: true, class: "dropdown-item") %>
         </div>
       </div>
       <%= render 'public/portfolios/index', portfolios: @portfolios %>

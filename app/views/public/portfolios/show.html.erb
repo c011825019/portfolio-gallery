@@ -1,5 +1,5 @@
-<div class="container px-4 px-lg-5 my-5">
-  <div class="row gx-4 align-items-center">
+<div class="container my-5">
+  <div class="row align-items-center">
     <div class="col">
       <div class="row">
         <div class="col-md-6">
@@ -59,6 +59,7 @@
               <%= sort_link(@q, :'created_at desc', '新しい順', hide_indicator: true, class: "dropdown-item") %>
               <%= sort_link(@q, :'created_at asc', '古い順', hide_indicator: true, class: "dropdown-item") %>
               <%= sort_link(@q, :'evaluation desc', '評価の高い順', hide_indicator: true, class: "dropdown-item") %>
+              <%= sort_link(@q, :'evaluation asc', '評価の低い順', hide_indicator: true, class: "dropdown-item") %>
             </div>
           </div>
         </div>
