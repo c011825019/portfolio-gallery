@@ -8,8 +8,10 @@
               <%= image_tag review.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
             <% end %>
           </div>
+
           <div class="col-md-10 col-9 ml-2 pr-0">
             <%= review.user.name %>
+
             <div class="float-right">
               <%= link_to edit_admin_portfolio_review_path(portfolio, review) do %>
                 <i class="fas fa-edit" style="color: gray;"></i>
@@ -18,10 +20,23 @@
                 <i class="fas fa-trash" style="color: gray;"></i>
               <% end %>
             </div>
-            <%= render 'public/reviews/static_evaluation', review: review %>
+
+            <div id="review-evaluation-<%= review.id%>"></div>
+            <script>
+              $('#review-evaluation-<%= review.id%>').empty();
+              $('#review-evaluation-<%= review.id%>').raty({
+                starOff: '<%= asset_path('star-off.png') %>',
+                starOn: '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                score: <%= review.evaluation %>,
+                half: true,
+                readOnly: true
+              });
+            </script>
           </div>
         </div>
       </div>
+
       <div class="card-body py-0">
         <p><%= simple_format(h(review.comment)) %></p>
       </div>

@@ -23,8 +23,8 @@ class Public::PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user_id = current_user.id
     tag_list=params[:portfolio][:tag_name].split(',')
-    if @portfolio.save and tag_list.length <= 5
-      @portfolio.save_tags(tag_list)
+    if @portfolio.save
+      @portfolio.save_tags(tag_list) if tag_list.length <= 5
       redirect_to portfolio_path(@portfolio)
     else
       @tag_list=tag_list.join(',')
@@ -42,7 +42,7 @@ class Public::PortfoliosController < ApplicationController
     @portfolio = Portfolio.find(params[:id])
     tag_list=params[:portfolio][:tag_name].split(',')
     if @portfolio.update(portfolio_params)
-      @portfolio.save_tags(tag_list)
+      @portfolio.save_tags(tag_list) if tag_list.length <= 5
       redirect_to portfolio_path(@portfolio)
     else
       @tag_list=@portfolio.tags.pluck(:name).join(',')

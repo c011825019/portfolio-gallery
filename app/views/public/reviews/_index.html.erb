@@ -1,4 +1,4 @@
-<% reviews.each do |review| %>
+<% portfolio.reviews.each do |review| %>
   <div class="card mt-2">
     <div class="card-header px-0">
       <div class="row">
@@ -14,12 +14,24 @@
               <%= link_to edit_portfolio_review_path(portfolio, review), data: {"turbolinks"=>false} do %><!--遷移後星の画像が消えるのを解消-->
                 <i class="fas fa-edit" style="color: gray;"></i>
               <% end %>
-              <%= link_to portfolio_review_path(portfolio, review), method: :delete, data: { confirm: '削除しますか？' } do %>
+              <%= link_to portfolio_review_path(portfolio, review), method: :delete, data: { confirm: '削除しますか？' }, remote: true do %>
                 <i class="fas fa-trash" style="color: gray;"></i>
               <% end %>
             </div>
           <% end %>
-          <%= render 'public/reviews/static_evaluation', review: review %>
+
+          <div id="review-evaluation-<%= review.id%>"></div>
+          <script>
+            $('#review-evaluation-<%= review.id%>').empty();
+            $('#review-evaluation-<%= review.id%>').raty({
+              starOff: '<%= asset_path('star-off.png') %>',
+              starOn: '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              score: <%= review.evaluation %>,
+              half: true,
+              readOnly: true
+            });
+          </script>
         </div>
       </div>
     </div>
