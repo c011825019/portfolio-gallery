@@ -18,7 +18,9 @@
           <P><%= link_to "#{@portfolio.code_url}", @portfolio.code_url %></P>
 
           <h5>評価</h5>
-          <%= render 'public/portfolios/static_evaluation_average', portfolio: @portfolio %>
+          <div class="portfolio-evaluation-average">
+            <%= render 'static_evaluation_average', portfolio: @portfolio %>
+          </div>
 
           <h5>タグ</h5>
           <% @portfolio.tags.each do |tag| %>
@@ -43,14 +45,18 @@
         <div class="row mt-5">
           <div class="col">
             <h4>レビューを投稿</h4>
-            <%= render 'public/reviews/form', portfolio: @portfolio, review: @review %>
+            <div class="review-errors"></div>
+            <div class="review-form">
+              <%= render 'public/reviews/form', portfolio: @portfolio, review: @review %>
+            </div>
+
           </div>
         </div>
       <% end %>
 
       <div class="row mt-5">
         <div class="col-12">
-          <h4 class="float-left">投稿一覧(全<%= @portfolio.reviews.all.count %>件)</h4>
+          <h4 class="float-left">投稿一覧</h4>
           <div class="dropdown float-right mr-5">
             <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               ソート
@@ -64,8 +70,8 @@
           </div>
         </div>
         <div class="col-12">
-          <div class="portfolio-reviews-index">
-            <%= render 'public/reviews/index', portfolio: @portfolio, reviews: @reviews %>
+          <div class="reviews-index">
+            <%= render 'public/reviews/index', portfolio: @portfolio %>
           </div>
         </div>
       </div>

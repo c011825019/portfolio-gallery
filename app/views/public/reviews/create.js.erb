@@ -1,2 +1,6 @@
 $('.review-textarea').val("")
-$('.portfolio-reviews-index').html("<%= j(render 'public/reviews/index', reviews: @portfolio.reviews) %>")
+<!--レビューの星を空にする-->
+$('.review-form').html("<%= j(render 'public/reviews/form',is_synchronization: false, portfolio: @review.portfolio, review: Review.new ) %>")
+
+$('.portfolio-evaluation-average').html("<%= j(render 'public/portfolios/static_evaluation_average', portfolio: @portfolio ) %>")
+$('.reviews-index').html("<%= j(render 'public/reviews/index', portfolio: @review.portfolio ) %>")
