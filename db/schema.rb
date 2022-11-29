@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_050845) do
     t.text "outline", null: false
     t.text "site_url", null: false
     t.text "code_url", null: false
-    t.float "evaluation_average", default: 0.0
+    t.float "evaluation_average", default: 0.0, null: false
     t.boolean "is_public", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

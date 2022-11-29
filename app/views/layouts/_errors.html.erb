@@ -1,3 +1,7 @@
-<% if object.errors.include?(parameter) %>
-  <p class="text-danger"><%= object.errors.full_messages_for(parameter).first %></p>
+<% if obj.errors.any?%>
+  <div class="text-danger">
+    <% obj.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+  </div>
 <% end %>

@@ -1,16 +1,12 @@
-<span id="rate_<%= portfolio.id %>"></span>(<%= portfolio.evaluation_average.floor(1) %>)
+<span id="portfolio-evaluation"></span>(<%= portfolio.evaluation_average.floor(1) %>)
 <script>
-  $(document).on('turbolinks:load', function() {
-    $('#rate-<%= portfolio.id %>').empty();
-    let raty_<%= portfolio.id %> = document.querySelector('#rate_<%= portfolio.id %>');
-    rate_<%= portfolio.id %>.innerHTML = ""
-    let option_<%= portfolio.id %> = {
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        score: "<%= portfolio.evaluation_average %>",
-        readOnly: true,
-      };
-    raty(raty_<%= portfolio.id %> ,option_<%= portfolio.id %>);
+  $('#portfolio-evaluation').empty();
+  $('#portfolio-evaluation').raty({
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    score: <%= portfolio.evaluation_average %>,
+    half: true,
+    readOnly: true
   });
 </script>
