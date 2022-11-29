@@ -9,10 +9,9 @@ class Public::PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
-    redirect_to portfolios_path if !@portfolio.is_public && @portfolio.user != current_user
-    @q = @portfolio.reviews.ransack(params[:q])
-    @reviews = @q.result
     @review = Review.new
+    # 非公開時、投稿ユーザー以外の閲覧を制限
+    redirect_to portfolios_path if !@portfolio.is_public && @portfolio.user != current_user
   end
 
   def new
@@ -23,6 +22,7 @@ class Public::PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user_id = current_user.id
     tag_list=params[:portfolio][:tag_name].split(',')
+
     if @portfolio.save
       @portfolio.save_tags(tag_list) if tag_list.length <= 5
       redirect_to portfolio_path(@portfolio)
@@ -41,6 +41,7 @@ class Public::PortfoliosController < ApplicationController
   def update
     @portfolio = Portfolio.find(params[:id])
     tag_list=params[:portfolio][:tag_name].split(',')
+
     if @portfolio.update(portfolio_params)
       @portfolio.save_tags(tag_list) if tag_list.length <= 5
       redirect_to portfolio_path(@portfolio)
