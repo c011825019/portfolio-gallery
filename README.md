@@ -26,7 +26,9 @@
 - 作成したポートフォリオに対してコメントをもらったり、評価を受けたいとき
 
 ## 設計書
-テーブル定義書: https://docs.google.com/spreadsheets/d/1pwOTdLy8IS3zd1tigUuqnhuMKbq4NTrx/edit#gid=1243549839
+- テーブル定義書
+
+https://docs.google.com/spreadsheets/d/1pwOTdLy8IS3zd1tigUuqnhuMKbq4NTrx/edit#gid=1243549839
 
 
 ## 開発環境
