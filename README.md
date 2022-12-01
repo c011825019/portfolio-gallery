@@ -26,6 +26,10 @@
 - 作成したポートフォリオに対してコメントをもらったり、評価を受けたいとき
 
 ## 設計書
+- ER図
+
+![ポートフォリオ　UIFlow-ER図 drawio](https://user-images.githubusercontent.com/112187295/205056089-c74494f9-d8c0-445f-926f-58574013be55.png)
+
 - テーブル定義書
 
 https://docs.google.com/spreadsheets/d/1pwOTdLy8IS3zd1tigUuqnhuMKbq4NTrx/edit#gid=1243549839
