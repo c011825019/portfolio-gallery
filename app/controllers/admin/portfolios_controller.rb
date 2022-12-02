@@ -7,6 +7,8 @@ class Admin::PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
+    # @q = @portfolio.reviews.ransack(params[:q])
+    # @reviews = @q.result
     @review = Review.new
   end
 
