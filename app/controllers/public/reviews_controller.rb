@@ -9,8 +9,6 @@ class Public::ReviewsController < ApplicationController
 
 
     if @review.save
-      @q = @portfolio.reviews.ransack(params[:q])
-      @reviews = @q.result
       @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))# review情報更新時、portfoilioのreviewの評価の平均値を更新
     else
       render :error
