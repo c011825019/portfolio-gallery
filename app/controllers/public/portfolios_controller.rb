@@ -9,7 +9,10 @@ class Public::PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
+    @q = @portfolio.reviews.ransack(params[:q])
+    @reviews = @q.result
     @review = Review.new
+
     # 非公開時、投稿ユーザー以外の閲覧を制限
     redirect_to portfolios_path if !@portfolio.is_public && @portfolio.user != current_user
   end

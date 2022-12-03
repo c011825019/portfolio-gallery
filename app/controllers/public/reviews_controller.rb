@@ -6,12 +6,13 @@ class Public::ReviewsController < ApplicationController
     @portfolio = Portfolio.find_by(id: params[:portfolio_id])
     @review = current_user.reviews.new(review_params)
     @review.portfolio_id = @portfolio.id
-    unless @review.save
-      @q = @portfolio.reviews.ransack(params[:q])
-      @reviews = @q.result
-      render 'error'
+
+
+    if @review.save
+      @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))# review情報更新時、portfoilioのreviewの評価の平均値を更新
+    else
+      render :error
     end
-    @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))# review情報更新時、portfoilioのreviewの評価の平均値を更新
   end
 
   def edit
