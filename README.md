@@ -27,7 +27,7 @@
 
 ## 設計書
 - 画面遷移図
-　　- ユーザー側
+  - ユーザー側
   ![ポートフォリオ　UIFlow-ユーザー側 drawio](https://user-images.githubusercontent.com/112187295/205478728-0c90ae81-d779-4eaf-aafb-bd439809a899.png)
   
 - ER図
