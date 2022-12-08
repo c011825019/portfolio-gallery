@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :ensure_guest_user, only: [:create]
 
   def create
@@ -9,7 +10,7 @@ class Public::ReviewsController < ApplicationController
 
 
     if @review.save
-      @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))# review情報更新時、portfoilioのreviewの評価の平均値を更新
+      @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))# review情報更新時、portfolioのreviewの評価の平均値を更新
     else
       render :error
     end
@@ -24,7 +25,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
 
     if @review.update(review_params)
-      @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))# review情報更新時、portfoilioのreviewの評価の平均値を更新
+      @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))# review情報更新時、portfolioのreviewの評価の平均値を更新
       redirect_to portfolio_path(params[:portfolio_id])
     else
       render 'error'
@@ -35,7 +36,7 @@ class Public::ReviewsController < ApplicationController
     @portfolio = Portfolio.find_by(id: params[:portfolio_id])
     Review.find_by(id: params[:id], portfolio_id: params[:portfolio_id]).destroy
 
-    # review情報更新時、portfoilioのreviewの評価の平均値を更新
+    # review情報更新時、portfolioのreviewの評価の平均値を更新
     if @portfolio.reviews.find_by(portfolio_id: @portfolio.id)
       @portfolio.update(evaluation_average: @portfolio.reviews.average(:evaluation))
     else
@@ -47,6 +48,13 @@ class Public::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:comment, :evaluation)
+  end
+
+  def ensure_correct_user
+    @review = Review.find(params[:id])
+    unless @review.user == current_user
+      redirect_to portfolio_path(@review.portfolio)
+    end
   end
 
   def ensure_guest_user

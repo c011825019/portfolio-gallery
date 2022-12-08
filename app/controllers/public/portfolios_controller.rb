@@ -1,5 +1,6 @@
 class Public::PortfoliosController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :ensure_guest_user, only: [:new]
 
   def index
@@ -37,7 +38,6 @@ class Public::PortfoliosController < ApplicationController
 
   def edit
     @portfolio = Portfolio.find(params[:id])
-    redirect_to portfolio_path(@portfolio) if @portfolio.user != current_user
     @tag_list=@portfolio.tags.pluck(:name).join(',')
   end
 
@@ -64,6 +64,13 @@ class Public::PortfoliosController < ApplicationController
 
   def portfolio_params
     params.require(:portfolio).permit(:name, :image, :outline, :site_url, :code_url, :is_public, category_ids: [])
+  end
+
+  def ensure_correct_user
+    @portfolio = Portfolio.find(params[:id])
+    unless @portfolio.user == current_user
+      redirect_to portfolios_path
+    end
   end
 
   def ensure_guest_user
